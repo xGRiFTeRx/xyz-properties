@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>XYZ Fashion</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ══ NAVBAR ══════════════════════════════════════════════════════════════ -->
+  <header class="navbar">
+    <div class="navbar__logo">
+      <span class="logo-text">XYZ</span>
+    </div>
+    <nav class="navbar__links">
+      <a href="#">Home</a>
+      <a href="#">Collections</a>
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="navbar__icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+    </div>
+  </header>
+
+  <!-- ══ SECTION 1 — COLLECTIONS ════════════════════════════════════════════ -->
+  <section class="collections">
+    <div class="section-header">
+      <h2 class="section-title">Collections</h2>
+    </div>
+
+    <div class="collections__track" id="collectionsTrack">
+
+      <a href="#" class="card card--collection">
+        <span class="card__badge">New</span>
+        <img src="assets/img/collection-1.jpg" alt="Fashion Week" />
+        <div class="card__label">Fashion Week</div>
+      </a>
+
+      <a href="#" class="card card--collection">
+        <span class="card__badge">2024</span>
+        <img src="assets/img/collection-2.jpg" alt="Paris Collection" />
+        <div class="card__label">Paris Collection</div>
+      </a>
+
+      <a href="#" class="card card--collection">
+        <span class="card__badge">New</span>
+        <img src="assets/img/collection-3.jpg" alt="Marseille Collection" />
+        <div class="card__label">Marseille Collection</div>
+      </a>
+
+      <a href="#" class="card card--collection">
+        <span class="card__badge">2024</span>
+        <img src="assets/img/collection-4.jpg" alt="Emanuel Collection" />
+        <div class="card__label">Emanuel Collection</div>
+      </a>
+
+    </div>
+
+    <!-- Dots -->
+    <div class="slider-dots" id="collectionDots">
+      <span class="dot dot--active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </section>
+
+  <!-- ══ SECTION 2 — CATEGORY FILTERS ══════════════════════════════════════ -->
+  <section class="filters">
+    <div class="filters__tabs" id="filterTabs">
+      <button class="filter-btn filter-btn--active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="backless">Backless</button>
+      <button class="filter-btn" data-filter="top">Top</button>
+      <button class="filter-btn" data-filter="lavanta">Lavanta</button>
+      <button class="filter-btn" data-filter="luxe">Luxe</button>
+      <button class="filter-btn" data-filter="fanstella">Fanstella</button>
+      <button class="filter-btn" data-filter="ariel">Ariel</button>
+      <button class="filter-btn" data-filter="religious">Religious</button>
+    </div>
+  </section>
+
+  <!-- ══ SECTION 3 — FEATURED CAROUSEL ══════════════════════════════════════ -->
+  <section class="featured">
+    <div class="featured__header">
+      <h2 class="featured__title">Pro מדהים <span class="accent">;)</span></h2>
+      <p class="featured__subtitle">גלו את הקולקציות המיוחדות שלנו — שמלות כלה ייחודיות לכל אישה</p>
+    </div>
+
+    <div class="featured__track" id="featuredTrack">
+
+      <div class="card card--featured">
+        <span class="card__category">Fanstella</span>
+        <img src="assets/img/featured-1.jpg" alt="Fanstella" />
+        <div class="card__footer">
+          <span class="card__name">Fanstella</span>
+          <button class="card__edit" title="Edit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="card card--featured card--featured-center">
+        <span class="card__category">Bridal</span>
+        <img src="assets/img/featured-2.jpg" alt="GUY AURORA" />
+        <div class="card__footer">
+          <span class="card__name">GUY AURORA</span>
+          <button class="card__edit" title="Edit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="card card--featured">
+        <span class="card__category">Paris</span>
+        <img src="assets/img/featured-3.jpg" alt="Paris Collection S" />
+        <div class="card__footer">
+          <span class="card__name">Paris Collection S</span>
+          <button class="card__edit" title="Edit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="card card--featured">
+        <span class="card__category">Luxe</span>
+        <img src="assets/img/featured-4.jpg" alt="Luxe Bridal" />
+        <div class="card__footer">
+          <span class="card__name">Luxe Bridal</span>
+          <button class="card__edit" title="Edit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="card card--featured">
+        <span class="card__category">Emanuel</span>
+        <img src="assets/img/featured-5.jpg" alt="Emanuel" />
+        <div class="card__footer">
+          <span class="card__name">Emanuel</span>
+          <button class="card__edit" title="Edit">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/>
+              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Nav arrows -->
+    <button class="slider-arrow slider-arrow--prev" id="featuredPrev">&#8249;</button>
+    <button class="slider-arrow slider-arrow--next" id="featuredNext">&#8250;</button>
+
+    <!-- Dots -->
+    <div class="slider-dots" id="featuredDots">
+      <span class="dot dot--active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </section>
+
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
