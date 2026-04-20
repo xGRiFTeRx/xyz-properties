@@ -6,7 +6,7 @@
   <title>XYZ Property Management</title>
   <link rel="stylesheet" href="assets/css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 </head>
 <body>
 
@@ -46,93 +46,76 @@
   </div>
 
   <!-- HERO -->
-  <section class="hero">
-    <div class="container hero__inner">
-      <div class="hero__content">
-        <p class="hero__label">Trusted Property Management</p>
-        <h1>Find Your <span>Perfect</span> Property</h1>
-        <p class="hero__sub">Residential and commercial properties across the city. Buy, rent, or list with confidence through XYZ Property Management.</p>
-        <div class="hero__actions">
-          <a href="properties.html" class="btn btn--accent">Browse Properties</a>
-          <a href="about.html" class="btn btn--outline" style="color:#fff;border-color:rgba(255,255,255,0.4)">Learn More</a>
-        </div>
-      </div>
-
-      <div class="hero__search">
-        <h3>Search Properties</h3>
-        <form>
-          <div class="search-grid">
-            <div class="search-field">
-              <label>Property Type</label>
-              <select>
-                <option>All Types</option>
-                <option>Residential</option>
-                <option>Commercial</option>
-                <option>Office</option>
-                <option>Industrial</option>
-              </select>
-            </div>
-            <div class="search-field">
-              <label>Listing Type</label>
-              <select>
-                <option>For Sale or Rent</option>
-                <option>For Sale</option>
-                <option>For Rent</option>
-              </select>
-            </div>
-            <div class="search-field">
-              <label>Location</label>
-              <input type="text" placeholder="City, neighborhood..." />
-            </div>
-            <div class="search-field">
-              <label>Max Price</label>
-              <select>
-                <option>Any Price</option>
-                <option>$500,000</option>
-                <option>$750,000</option>
-                <option>$1,000,000</option>
-                <option>$2,000,000+</option>
-              </select>
-            </div>
+  <section class="hero hero--asymmetric">
+    <div class="container">
+      <div class="hero__inner">
+        <div class="hero__content">
+          <p class="hero__eyebrow">XYZ Property — Est. 2010</p>
+          <h1>1,200 properties.<br><em>One team</em> who knows<br>every one of them.</h1>
+          <p class="hero__sub">We cover residential, commercial, and industrial across 24 cities. Most clients close in under 3 weeks.</p>
+          <div class="hero__actions">
+            <a href="properties.html" class="btn btn--accent">See available homes</a>
+            <a href="contact.html" class="btn btn--ghost">Book a 15-min call</a>
           </div>
-          <button type="submit" class="btn btn--primary search-btn">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            Search Properties
-          </button>
-        </form>
+          <p class="hero__trust">850+ clients since 2010 &nbsp;·&nbsp; 4.9★ average rating</p>
+        </div>
+
+        <div class="hero__search">
+          <p class="hero__search-label">Find a property</p>
+          <form>
+            <div class="search-grid">
+              <div class="search-field">
+                <label>Type</label>
+                <select>
+                  <option>All Types</option>
+                  <option>Residential</option>
+                  <option>Commercial</option>
+                  <option>Office</option>
+                  <option>Industrial</option>
+                </select>
+              </div>
+              <div class="search-field">
+                <label>Buy or Rent</label>
+                <select>
+                  <option>Both</option>
+                  <option>For Sale</option>
+                  <option>For Rent</option>
+                </select>
+              </div>
+              <div class="search-field">
+                <label>Location</label>
+                <input type="text" placeholder="City or neighborhood" />
+              </div>
+              <div class="search-field">
+                <label>Budget</label>
+                <select>
+                  <option>Any</option>
+                  <option>Under $500k</option>
+                  <option>$500k–$1M</option>
+                  <option>$1M–$2M</option>
+                  <option>$2M+</option>
+                </select>
+              </div>
+            </div>
+            <button type="submit" class="btn btn--primary search-btn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              Search
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- STATS -->
-  <div class="stats-bar">
-    <div class="container stats-bar__inner">
-      <div class="stat-item">
-        <div class="stat-item__number" data-target="1200" data-suffix="+">0+</div>
-        <div class="stat-item__label">Properties Listed</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-item__number" data-target="850" data-suffix="+">0+</div>
-        <div class="stat-item__label">Happy Clients</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-item__number" data-target="15" data-suffix=" yrs">0 yrs</div>
-        <div class="stat-item__label">Years Experience</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-item__number" data-target="24" data-suffix="">0</div>
-        <div class="stat-item__label">Cities Covered</div>
-      </div>
-    </div>
-  </div>
-
   <!-- FEATURED PROPERTIES -->
   <section class="section section--white">
     <div class="container">
-      <div class="section-header">
-        <p class="section-label">Latest Listings</p>
-        <h2 class="section-title">Featured Properties</h2>
-        <p class="section-sub">Handpicked residential and commercial properties available now.</p>
+      <div class="section-header listings-header">
+        <div>
+          <h2 class="section-title">On the market now</h2>
+          <p class="section-sub">Updated daily. These three came in this week.</p>
+        </div>
+        <a href="properties.html" class="btn btn--outline">See all 1,200+ listings</a>
       </div>
 
       <div class="properties-grid">
@@ -217,95 +200,82 @@
 
       </div>
 
-      <div style="text-align:center;margin-top:40px">
-        <a href="properties.html" class="btn btn--outline">View All Properties</a>
-      </div>
     </div>
   </section>
 
   <!-- PROPERTY TYPES -->
   <section class="section section--gray">
     <div class="container">
-      <div class="section-header section-header--center">
-        <p class="section-label">What We Offer</p>
-        <h2 class="section-title">Property Categories</h2>
-        <p class="section-sub">From cozy homes to commercial spaces — we manage it all.</p>
-      </div>
-      <div class="types-grid">
-        <div class="type-card active">
-          <div class="type-card__icon">🏠</div>
-          <h4>Residential</h4>
-          <p>Houses & apartments</p>
+      <div class="types-editorial">
+        <div class="types-editorial__heading">
+          <h2 class="section-title">Residential. Commercial.<br><em>Industrial. Mixed use.</em></h2>
+          <p style="color:var(--text-light);margin-top:12px;font-size:0.95rem">Four categories. 24 cities. One contact.</p>
         </div>
-        <div class="type-card">
-          <div class="type-card__icon">🏢</div>
-          <h4>Commercial</h4>
-          <p>Offices & retail</p>
-        </div>
-        <div class="type-card">
-          <div class="type-card__icon">🏭</div>
-          <h4>Industrial</h4>
-          <p>Warehouses & factories</p>
-        </div>
-        <div class="type-card">
-          <div class="type-card__icon">🏨</div>
-          <h4>Mixed Use</h4>
-          <p>Combined spaces</p>
+        <div class="types-grid">
+          <a href="properties.html" class="type-card active">
+            <div class="type-card__icon">🏠</div>
+            <h4>Residential</h4>
+            <p>Houses, apartments, condos</p>
+          </a>
+          <a href="properties.html" class="type-card">
+            <div class="type-card__icon">🏢</div>
+            <h4>Commercial</h4>
+            <p>Offices, retail, showrooms</p>
+          </a>
+          <a href="properties.html" class="type-card">
+            <div class="type-card__icon">🏭</div>
+            <h4>Industrial</h4>
+            <p>Warehouses, logistics, factories</p>
+          </a>
+          <a href="properties.html" class="type-card">
+            <div class="type-card__icon">🏨</div>
+            <h4>Mixed Use</h4>
+            <p>Live-work, retail + residential</p>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- WHY CHOOSE US -->
+  <!-- HOW WE WORK -->
   <section class="section section--white">
     <div class="container">
-      <div class="section-header">
-        <p class="section-label">Why XYZ</p>
-        <h2 class="section-title">Why Choose Us</h2>
-        <p class="section-sub">We make property management simple, transparent, and reliable.</p>
-      </div>
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h3>Verified Listings</h3>
-          <p>Every property is personally inspected and verified before listing. No surprises, no fake photos.</p>
+      <div class="how-grid">
+        <div class="how-grid__left">
+          <h2 class="section-title">How we work,<br><em>specifically.</em></h2>
+          <p style="color:var(--text-light);line-height:1.8;margin-top:16px;font-size:0.95rem">Every listing is physically inspected before it goes live. Our agents aren't spread thin — each one covers a defined area and knows the local pricing well enough to spot a bad deal at a glance.</p>
+          <p style="color:var(--text-light);line-height:1.8;margin-top:12px;font-size:0.95rem">We don't do call centers. You get one agent, one phone number, and they stay with you until the deal is done.</p>
+          <a href="about.html" class="btn btn--outline" style="margin-top:28px;display:inline-flex">Meet the team</a>
         </div>
-        <div class="feature-card">
-          <div class="feature-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="how-grid__right">
+          <div class="how-item">
+            <div class="how-item__num">01</div>
+            <div>
+              <h4>Physical inspection, every time</h4>
+              <p>No listing goes live without a site visit. Photos match reality.</p>
+            </div>
           </div>
-          <h3>Fast Processing</h3>
-          <p>We handle all paperwork and legal requirements so you can close deals in record time.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <div class="how-item">
+            <div class="how-item__num">02</div>
+            <div>
+              <h4>One agent, start to finish</h4>
+              <p>No handoffs. No "let me check with my colleague." Same person, whole deal.</p>
+            </div>
           </div>
-          <h3>Expert Agents</h3>
-          <p>Our certified agents have deep local market knowledge to help you make the best decision.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <div class="how-item">
+            <div class="how-item__num">03</div>
+            <div>
+              <h4>Average close time: 19 days</h4>
+              <p>We handle the paperwork. You show up to sign.</p>
+            </div>
           </div>
-          <h3>Best Price Match</h3>
-          <p>We analyze the market daily to ensure you always get the most competitive pricing available.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.85a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+          <div class="how-item">
+            <div class="how-item__num">04</div>
+            <div>
+              <h4>Daily market pricing</h4>
+              <p>We check comparable sales every morning. Overpriced listings don't make it past us.</p>
+            </div>
           </div>
-          <h3>24/7 Support</h3>
-          <p>Round-the-clock customer support via phone, chat, or email for all your property needs.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-card__icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h3>Market Analytics</h3>
-          <p>Get real-time market data, price trends, and investment insights powered by our analytics platform.</p>
         </div>
       </div>
     </div>
@@ -314,41 +284,41 @@
   <!-- TESTIMONIALS -->
   <section class="section section--gray">
     <div class="container">
-      <div class="section-header section-header--center">
-        <p class="section-label">Client Reviews</p>
-        <h2 class="section-title">What Our Clients Say</h2>
-      </div>
-      <div class="testimonials-grid">
-        <div class="testimonial-card">
-          <div class="testimonial-card__stars">★★★★★</div>
-          <p class="testimonial-card__text">"XYZ Property helped us find our dream home in just two weeks. The process was seamless and the team was incredibly professional throughout."</p>
-          <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">JM</div>
-            <div>
-              <div class="testimonial-card__name">James Miller</div>
-              <div class="testimonial-card__role">Residential Buyer</div>
+      <div class="testimonials-editorial">
+        <div class="testimonials-editorial__heading">
+          <h2 class="section-title">What clients<br>actually said.</h2>
+        </div>
+        <div class="testimonials-editorial__cards">
+          <div class="testimonial-card testimonial-card--large">
+            <p class="testimonial-card__text">"We'd been looking for 8 months with two other agencies. XYZ called us on a Tuesday, showed us three places on Thursday, and we signed on the Friday."</p>
+            <div class="testimonial-card__author">
+              <div class="testimonial-card__avatar">JM</div>
+              <div>
+                <div class="testimonial-card__name">James Miller</div>
+                <div class="testimonial-card__role">Bought a 4-bed in Greenview Heights</div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-card__stars">★★★★★</div>
-          <p class="testimonial-card__text">"We leased our commercial space through XYZ and the experience was outstanding. They understood our business needs perfectly."</p>
-          <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">SC</div>
-            <div>
-              <div class="testimonial-card__name">Sarah Chen</div>
-              <div class="testimonial-card__role">Business Owner</div>
+          <div class="testimonials-editorial__stack">
+            <div class="testimonial-card">
+              <p class="testimonial-card__text">"Found our 3,200 sqft office in the CBD in 11 days. The lease was signed before our old one expired. First time that's ever happened."</p>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">SC</div>
+                <div>
+                  <div class="testimonial-card__name">Sarah Chen</div>
+                  <div class="testimonial-card__role">Leased commercial space, Floor 12</div>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="testimonial-card">
-          <div class="testimonial-card__stars">★★★★☆</div>
-          <p class="testimonial-card__text">"As an investor, I rely on accurate data. XYZ's market analytics helped me make a confident investment decision. Highly recommend."</p>
-          <div class="testimonial-card__author">
-            <div class="testimonial-card__avatar">RK</div>
-            <div>
-              <div class="testimonial-card__name">Robert Kim</div>
-              <div class="testimonial-card__role">Property Investor</div>
+            <div class="testimonial-card">
+              <p class="testimonial-card__text">"They told me the Midtown asking price was 12% above comparable sales and walked me through the numbers. I paid $38k less than the listing."</p>
+              <div class="testimonial-card__author">
+                <div class="testimonial-card__avatar">RK</div>
+                <div>
+                  <div class="testimonial-card__name">Robert Kim</div>
+                  <div class="testimonial-card__role">Investment buyer, 3 properties</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -358,12 +328,14 @@
 
   <!-- CTA -->
   <section class="cta-section">
-    <div class="container">
-      <h2>Ready to Find Your Next Property?</h2>
-      <p>Join thousands of satisfied clients who trust XYZ Property Management.</p>
-      <div class="cta-section__actions">
-        <a href="properties.html" class="btn btn--accent">Browse Listings</a>
-        <a href="contact.html" class="btn btn--white">Talk to an Agent</a>
+    <div class="container cta-editorial">
+      <div>
+        <h2>850 clients found their place here.<br><em>Most of them weren't sure we could help.</em></h2>
+        <p style="color:rgba(255,255,255,0.7);margin-top:16px;font-size:1rem">15-minute call. No obligation. We'll tell you straight if we can't help.</p>
+      </div>
+      <div class="cta-section__actions" style="flex-direction:column;align-items:flex-start;gap:12px">
+        <a href="contact.html" class="btn btn--accent">Book a 15-min call</a>
+        <a href="properties.html" class="btn btn--ghost-white">Browse listings first</a>
       </div>
     </div>
   </section>
