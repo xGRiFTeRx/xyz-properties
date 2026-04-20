@@ -184,11 +184,12 @@
     let allProperties = [];
 
     function applyFilters() {
+      const selects  = document.querySelectorAll('.filters-bar select');
       const keyword  = document.querySelector('.filters-bar input[type="text"]').value.toLowerCase();
-      const type     = document.querySelector('.filters-bar select:nth-of-type(1)').value;
-      const status   = document.querySelector('.filters-bar select:nth-of-type(2)').value;
-      const minBeds  = parseInt(document.querySelector('.filters-bar select:nth-of-type(3)').value) || 0;
-      const maxPrice = document.querySelector('.filters-bar select:nth-of-type(4)').value;
+      const type     = selects[0].value;
+      const status   = selects[1].value;
+      const minBeds  = parseInt(selects[2].value) || 0;
+      const maxPrice = selects[3].value;
 
       const filtered = allProperties.filter(p => {
         if (keyword && !p.title.toLowerCase().includes(keyword) && !p.location.toLowerCase().includes(keyword)) return false;
