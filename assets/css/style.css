@@ -669,6 +669,35 @@ h4 { font-size: 0.95rem; font-weight: 600; }
 .toast.show { transform: translateY(0); opacity: 1; }
 .toast--success { background: #059669; }
 
+/* ── Subcategory Tab Bar ──────────────────────────────────────────────────── */
+.subcat-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+}
+.subcat-tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.subcat-tabs::-webkit-scrollbar { display: none; }
+.subcat-btn {
+  padding: 16px 22px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-light);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+  font-family: var(--font);
+}
+.subcat-btn:hover { color: var(--primary); }
+.subcat-btn.active { color: var(--primary); border-bottom-color: var(--accent); font-weight: 600; }
+
 /* ── Ghost Buttons ─────────────────────────────────────────────────────────── */
 .btn--ghost {
   background: transparent;
