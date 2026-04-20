@@ -354,8 +354,8 @@
               <div class="field-grid">
                 <div class="field">
                   <label>Property Type</label>
-                  <select id="propType">
-                    <option value="" disabled selected>Select one</option>
+                  <select id="propType" onchange="onPropTypeChange(this.value)">
+                    <option value="" disabled selected>Select Type</option>
                     <option value="apartment">Apartment</option>
                     <option value="house">House</option>
                     <option value="condo">Condo</option>
@@ -366,9 +366,10 @@
                 <div class="field">
                   <label>Number of Rooms</label>
                   <select id="rooms">
+                    <option value="" disabled selected>Select Rooms</option>
                     <option value="1">Studio / 1 Room</option>
                     <option value="2">2 Rooms</option>
-                    <option value="3" selected>3 Rooms</option>
+                    <option value="3">3 Rooms</option>
                     <option value="4">4 Rooms</option>
                     <option value="5">5+ Rooms</option>
                   </select>
@@ -376,12 +377,13 @@
               </div>
 
               <div class="field-full field">
-                <label>Apartment Size (sqm) — <span id="sizeVal">80</span> sqm</label>
-                <input type="range" id="aptSize" min="20" max="300" value="80" step="5" />
-                <div class="range-labels"><span>20 sqm</span><span>300 sqm</span></div>
+                <label>Property Size (sqm) — <span id="sizeVal">0</span> sqm</label>
+                <input type="range" id="aptSize" min="0" max="300" value="0" step="5" />
+                <div class="range-labels"><span>0 sqm</span><span>300 sqm</span></div>
               </div>
 
-              <div class="field-grid">
+              <!-- Floor & Elevator — shown conditionally based on property type -->
+              <div id="floorElevatorRow" class="field-grid" style="display:none">
                 <div class="field">
                   <label>Current Floor</label>
                   <select id="fromFloor">
@@ -393,7 +395,7 @@
                     <option value="5">5th Floor +</option>
                   </select>
                 </div>
-                <div class="field">
+                <div class="field" id="elevatorField">
                   <label>Elevator Available?</label>
                   <select id="elevator">
                     <option value="yes">Yes</option>
@@ -652,6 +654,27 @@
   <div class="toast"></div>
   <script src="assets/js/main.js"></script>
   <script>
+    // ── Property type conditional fields ─────────────────────────────────────
+    function onPropTypeChange(type) {
+      const floorRow    = document.getElementById('floorElevatorRow');
+      const elevField   = document.getElementById('elevatorField');
+
+      // Types that have floors + elevator
+      const hasFloorAndElevator = ['apartment', 'condo', 'office', 'studio'];
+      // Types that have floors only (no elevator)
+      const hasFloorOnly = ['house'];
+
+      if (hasFloorAndElevator.includes(type)) {
+        floorRow.style.display = 'grid';
+        elevField.style.display = 'flex';
+      } else if (hasFloorOnly.includes(type)) {
+        floorRow.style.display = 'grid';
+        elevField.style.display = 'none';
+      } else {
+        floorRow.style.display = 'none';
+      }
+    }
+
     // ── Step navigation ───────────────────────────────────────────────────────
     function goStep(n) {
       [1,2,3].forEach(i => {
