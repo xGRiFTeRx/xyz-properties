@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — XYZ Property Management</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <div class="logo-icon">XYZ</div>
+        <span class="logo-name">XYZ <span>Property</span></span>
+      </a>
+      <div class="navbar__links">
+        <a href="index.html">Home</a>
+        <a href="properties.html">Properties</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="active">Contact</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="properties.html" class="btn btn--outline">Browse Listings</a>
+        <a href="contact.html" class="btn btn--primary">List Property</a>
+      </div>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu">
+    <button class="mobile-menu__close">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="properties.html">Properties</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary">List Property</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Contact</div>
+      <h1>Get in Touch</h1>
+      <p>Our team is ready to help — reach out anytime</p>
+    </div>
+  </div>
+
+  <section class="section section--white">
+    <div class="container contact-grid">
+
+      <!-- Info -->
+      <div>
+        <p class="section-label">Contact Info</p>
+        <h2 class="section-title" style="margin-bottom:32px">We'd Love to Hear From You</h2>
+
+        <div class="contact-info">
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <h4>Office Address</h4>
+              <p>123 Business Avenue, Suite 400<br>Downtown City, ST 00000</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.85a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 16z"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <h4>Phone</h4>
+              <p>+1 (555) 000-0000<br>Mon–Fri: 8am – 6pm</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <h4>Email</h4>
+              <p>info@xyzproperty.com<br>support@xyzproperty.com</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="contact-info-text">
+              <h4>Business Hours</h4>
+              <p>Monday – Friday: 8:00am – 6:00pm<br>Saturday: 9:00am – 2:00pm</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-placeholder" style="margin-top:32px">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>123 Business Avenue, Downtown</span>
+          <small style="font-size:0.78rem">Map integration available with Google Maps API key</small>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <div class="contact-form-card">
+        <h3>Send Us a Message</h3>
+        <form class="full-form" id="contactForm">
+          <div class="form-row">
+            <input type="text" placeholder="First Name" required />
+            <input type="text" placeholder="Last Name" required />
+          </div>
+          <input type="email" placeholder="Email Address" required />
+          <input type="tel" placeholder="Phone Number" />
+          <select>
+            <option value="">I'm interested in...</option>
+            <option>Buying a Property</option>
+            <option>Renting a Property</option>
+            <option>Listing My Property</option>
+            <option>Commercial Inquiry</option>
+            <option>Investment Advice</option>
+            <option>Other</option>
+          </select>
+          <textarea placeholder="Tell us more about what you're looking for..."></textarea>
+          <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center">Send Message</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border-top:none;padding:24px 0">
+        <span>&copy; 2025 XYZ Property Management. All rights reserved.</span>
+        <span>Privacy Policy &nbsp;|&nbsp; Terms of Service</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast"></div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

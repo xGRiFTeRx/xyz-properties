@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Modern Family Home — XYZ Property Management</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <div class="logo-icon">XYZ</div>
+        <span class="logo-name">XYZ <span>Property</span></span>
+      </a>
+      <div class="navbar__links">
+        <a href="index.html">Home</a>
+        <a href="properties.html">Properties</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="properties.html" class="btn btn--outline">Browse Listings</a>
+        <a href="contact.html" class="btn btn--primary">List Property</a>
+      </div>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu">
+    <button class="mobile-menu__close">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="properties.html">Properties</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary">List Property</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> › <a href="properties.html">Properties</a> › Modern Family Home</div>
+      <h1>Modern Family Home with Garden</h1>
+      <p>Greenview Heights, Downtown &nbsp;·&nbsp; 4 Beds · 3 Baths · 2,400 sqft</p>
+    </div>
+  </div>
+
+  <section class="property-detail">
+    <div class="container property-detail__grid">
+
+      <!-- LEFT: Gallery + Info -->
+      <div>
+        <!-- Gallery -->
+        <div class="gallery-main">
+          <img src="https://picsum.photos/seed/detail-main/900/600" alt="Main view" id="mainGalleryImg" />
+        </div>
+        <div class="gallery-thumbs">
+          <div class="gallery-thumb active"><img src="https://picsum.photos/seed/detail-main/900/600" alt="" /></div>
+          <div class="gallery-thumb"><img src="https://picsum.photos/seed/detail-2/900/600" alt="" /></div>
+          <div class="gallery-thumb"><img src="https://picsum.photos/seed/detail-3/900/600" alt="" /></div>
+          <div class="gallery-thumb"><img src="https://picsum.photos/seed/detail-4/900/600" alt="" /></div>
+        </div>
+
+        <!-- Info -->
+        <div class="property-info" style="margin-top:24px">
+          <div class="property-info__header">
+            <div>
+              <span class="badge badge--sale" style="margin-bottom:8px">For Sale</span>
+              <h2 style="color:var(--primary)">Modern Family Home with Garden</h2>
+            </div>
+            <div class="property-info__price">$485,000</div>
+          </div>
+
+          <div class="property-info__meta">
+            <span class="meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg> 4 Bedrooms</span>
+            <span class="meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M4 12a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4M20 12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-4M12 12v8M8 20h8"/></svg> 3 Bathrooms</span>
+            <span class="meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> 2,400 sqft</span>
+            <span class="meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Greenview Heights</span>
+            <span class="meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> Built 2019</span>
+            <span class="meta-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg> 2-Car Garage</span>
+          </div>
+
+          <h3 style="color:var(--primary);margin-bottom:12px">Description</h3>
+          <p class="property-info__desc">
+            This stunning modern family home sits in the sought-after Greenview Heights neighborhood. Featuring an open-plan living area, fully fitted kitchen with island, master suite with walk-in closet, and a beautifully landscaped private garden. The property includes a double garage, solar panels, and smart home system throughout.
+          </p>
+          <p class="property-info__desc" style="margin-top:12px">
+            Walking distance to top-rated schools, parks, and the local shopping center. Quick access to the highway makes commuting effortless. An ideal family home in a quiet, safe community.
+          </p>
+
+          <h3 style="color:var(--primary);margin:24px 0 12px">Amenities</h3>
+          <div class="amenities-grid">
+            <div class="amenity-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Swimming Pool</div>
+            <div class="amenity-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Garden</div>
+            <div class="amenity-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> 2-Car Garage</div>
+            <div class="amenity-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Solar Panels</div>
+            <div class="amenity-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Smart Home</div>
+            <div class="amenity-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Air Conditioning</div>
+            <div class="amenity-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Security System</div>
+            <div class="amenity-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Fiber Internet</div>
+            <div class="amenity-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Pet Friendly</div>
+          </div>
+        </div>
+
+        <!-- Map -->
+        <div class="property-info" style="margin-top:0">
+          <h3 style="color:var(--primary);margin-bottom:16px">Location</h3>
+          <div class="map-placeholder">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>Greenview Heights, Downtown</span>
+            <small style="font-size:0.78rem">Map integration available with Google Maps API key</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Agent card + Calculator -->
+      <div>
+        <div class="agent-card">
+          <div class="agent-card__header">
+            <div class="agent-avatar">JD</div>
+            <div>
+              <div class="agent-name">John Davies</div>
+              <div class="agent-title">Senior Property Agent</div>
+            </div>
+          </div>
+          <form class="contact-form" id="inquiryForm">
+            <input type="text" placeholder="Your Name" required />
+            <input type="email" placeholder="Your Email" required />
+            <input type="tel" placeholder="Phone Number" />
+            <textarea rows="4" placeholder="I'm interested in this property and would like to arrange a viewing..."></textarea>
+            <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center">Send Inquiry</button>
+          </form>
+          <div style="display:flex;gap:10px;margin-top:12px">
+            <a href="tel:+15550000000" class="btn btn--outline" style="flex:1;justify-content:center;font-size:0.85rem">📞 Call</a>
+            <a href="contact.html" class="btn btn--outline" style="flex:1;justify-content:center;font-size:0.85rem">💬 Chat</a>
+          </div>
+        </div>
+
+        <!-- Mortgage Calculator -->
+        <div class="calculator" style="margin-top:20px">
+          <h3>Mortgage Calculator</h3>
+          <div class="calc-grid">
+            <div class="calc-field">
+              <label>Property Price ($)</label>
+              <input type="number" id="calcPrice" value="485000" />
+            </div>
+            <div class="calc-field">
+              <label>Down Payment ($)</label>
+              <input type="number" id="calcDown" value="97000" />
+            </div>
+            <div class="calc-field">
+              <label>Interest Rate (%)</label>
+              <input type="number" id="calcRate" value="6.5" step="0.1" />
+            </div>
+            <div class="calc-field">
+              <label>Loan Term (years)</label>
+              <input type="number" id="calcYears" value="30" />
+            </div>
+          </div>
+          <button class="btn btn--primary" id="calcBtn" style="width:100%;justify-content:center;margin-bottom:16px">Calculate</button>
+          <div class="calc-result">
+            <div class="calc-result__label">Estimated Monthly Payment</div>
+            <div class="calc-result__amount" id="calcResult">—</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border-top:none;padding:24px 0">
+        <span>&copy; 2025 XYZ Property Management. All rights reserved.</span>
+        <span>Privacy Policy &nbsp;|&nbsp; Terms of Service</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast"></div>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // Gallery switcher
+    const mainImg = document.getElementById('mainGalleryImg');
+    document.querySelectorAll('.gallery-thumb').forEach(thumb => {
+      thumb.addEventListener('click', () => {
+        mainImg.src = thumb.querySelector('img').src;
+        document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

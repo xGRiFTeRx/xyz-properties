@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Properties — XYZ Property Management</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <div class="logo-icon">XYZ</div>
+        <span class="logo-name">XYZ <span>Property</span></span>
+      </a>
+      <div class="navbar__links">
+        <a href="index.html">Home</a>
+        <a href="properties.html" class="active">Properties</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="properties.html" class="btn btn--outline">Browse Listings</a>
+        <a href="contact.html" class="btn btn--primary">List Property</a>
+      </div>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu">
+    <button class="mobile-menu__close">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="properties.html">Properties</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn--primary">List Property</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Properties</div>
+      <h1>All Properties</h1>
+      <p>Browse our full portfolio of residential and commercial listings</p>
+    </div>
+  </div>
+
+  <section class="section section--gray">
+    <div class="container">
+
+      <!-- Filters -->
+      <div class="filters-bar">
+        <div class="filter-group">
+          <label>Search</label>
+          <input type="text" placeholder="Keyword, location..." />
+        </div>
+        <div class="filter-group">
+          <label>Type</label>
+          <select>
+            <option>All Types</option>
+            <option>Residential</option>
+            <option>Commercial</option>
+            <option>Industrial</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Listing</label>
+          <select>
+            <option>Sale or Rent</option>
+            <option>For Sale</option>
+            <option>For Rent</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Bedrooms</label>
+          <select>
+            <option>Any</option>
+            <option>1+</option>
+            <option>2+</option>
+            <option>3+</option>
+            <option>4+</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label>Max Price</label>
+          <select>
+            <option>Any Price</option>
+            <option>$300,000</option>
+            <option>$500,000</option>
+            <option>$750,000</option>
+            <option>$1M+</option>
+          </select>
+        </div>
+        <button class="btn btn--primary" style="align-self:flex-end">Search</button>
+      </div>
+
+      <!-- Grid -->
+      <div class="properties-grid">
+
+        <a href="property.html" class="property-card">
+          <div class="property-card__image">
+            <img src="https://picsum.photos/seed/prop1/600/400" alt="Property" />
+            <div class="property-card__badges"><span class="badge badge--sale">For Sale</span></div>
+            <button class="property-card__favorite" onclick="event.preventDefault();this.classList.toggle('active')">
+              <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+          <div class="property-card__body">
+            <div class="property-card__price">$485,000</div>
+            <div class="property-card__title">Modern Family Home with Garden</div>
+            <div class="property-card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Greenview Heights</div>
+            <div class="property-card__meta">
+              <span class="meta-item">🛏 4 Beds</span>
+              <span class="meta-item">🚿 3 Baths</span>
+              <span class="meta-item">📐 2,400 sqft</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="property.html" class="property-card">
+          <div class="property-card__image">
+            <img src="https://picsum.photos/seed/prop2/600/400" alt="Property" />
+            <div class="property-card__badges"><span class="badge badge--rent">For Rent</span><span class="badge badge--commercial">Commercial</span></div>
+            <button class="property-card__favorite" onclick="event.preventDefault();this.classList.toggle('active')">
+              <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+          <div class="property-card__body">
+            <div class="property-card__price">$8,500 <span>/ mo</span></div>
+            <div class="property-card__title">Premium Office Space — Floor 12</div>
+            <div class="property-card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Central Business District</div>
+            <div class="property-card__meta">
+              <span class="meta-item">📐 3,200 sqft</span>
+              <span class="meta-item">👥 20 Cap</span>
+              <span class="meta-item">🏢 Floor 12</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="property.html" class="property-card">
+          <div class="property-card__image">
+            <img src="https://picsum.photos/seed/prop3/600/400" alt="Property" />
+            <div class="property-card__badges"><span class="badge badge--sale">For Sale</span><span class="badge badge--new">New</span></div>
+            <button class="property-card__favorite" onclick="event.preventDefault();this.classList.toggle('active')">
+              <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+          <div class="property-card__body">
+            <div class="property-card__price">$320,000</div>
+            <div class="property-card__title">Luxury City View Condominium</div>
+            <div class="property-card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Skyline Tower, Midtown</div>
+            <div class="property-card__meta">
+              <span class="meta-item">🛏 2 Beds</span>
+              <span class="meta-item">🚿 2 Baths</span>
+              <span class="meta-item">📐 1,100 sqft</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="property.html" class="property-card">
+          <div class="property-card__image">
+            <img src="https://picsum.photos/seed/prop4/600/400" alt="Property" />
+            <div class="property-card__badges"><span class="badge badge--rent">For Rent</span></div>
+            <button class="property-card__favorite" onclick="event.preventDefault();this.classList.toggle('active')">
+              <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+          <div class="property-card__body">
+            <div class="property-card__price">$2,200 <span>/ mo</span></div>
+            <div class="property-card__title">Cozy Suburban Apartment</div>
+            <div class="property-card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Maplewood, Westside</div>
+            <div class="property-card__meta">
+              <span class="meta-item">🛏 2 Beds</span>
+              <span class="meta-item">🚿 1 Bath</span>
+              <span class="meta-item">📐 850 sqft</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="property.html" class="property-card">
+          <div class="property-card__image">
+            <img src="https://picsum.photos/seed/prop5/600/400" alt="Property" />
+            <div class="property-card__badges"><span class="badge badge--sale">For Sale</span><span class="badge badge--commercial">Commercial</span></div>
+            <button class="property-card__favorite" onclick="event.preventDefault();this.classList.toggle('active')">
+              <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+          <div class="property-card__body">
+            <div class="property-card__price">$1,250,000</div>
+            <div class="property-card__title">Retail Strip Mall — Corner Lot</div>
+            <div class="property-card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Harbor View, Eastside</div>
+            <div class="property-card__meta">
+              <span class="meta-item">📐 8,500 sqft</span>
+              <span class="meta-item">🏪 5 Units</span>
+              <span class="meta-item">🅿 30 Parking</span>
+            </div>
+          </div>
+        </a>
+
+        <a href="property.html" class="property-card">
+          <div class="property-card__image">
+            <img src="https://picsum.photos/seed/prop6/600/400" alt="Property" />
+            <div class="property-card__badges"><span class="badge badge--sale">For Sale</span><span class="badge badge--featured">Featured</span></div>
+            <button class="property-card__favorite" onclick="event.preventDefault();this.classList.toggle('active')">
+              <svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </button>
+          </div>
+          <div class="property-card__body">
+            <div class="property-card__price">$875,000</div>
+            <div class="property-card__title">Executive Villa with Pool</div>
+            <div class="property-card__location"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Palm Ridge, Northside</div>
+            <div class="property-card__meta">
+              <span class="meta-item">🛏 5 Beds</span>
+              <span class="meta-item">🚿 4 Baths</span>
+              <span class="meta-item">📐 4,800 sqft</span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="pagination">
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+        <button class="page-btn">›</button>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border-top:none;padding:24px 0">
+        <span>&copy; 2025 XYZ Property Management. All rights reserved.</span>
+        <span>Privacy Policy &nbsp;|&nbsp; Terms of Service</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast"></div>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
