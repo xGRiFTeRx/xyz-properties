@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 </head>
 <body>
-
   <nav class="navbar">
     <div class="container navbar__inner">
       <a href="index.html" class="navbar__logo">
@@ -19,7 +18,6 @@
       <div class="navbar__links">
         <a href="index.html">Home</a>
         <a href="properties.html" class="active">Properties</a>
-        <a href="catalog.html">Catalog</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </div>
@@ -30,17 +28,14 @@
       <button class="hamburger"><span></span><span></span><span></span></button>
     </div>
   </nav>
-
   <div class="mobile-menu">
     <button class="mobile-menu__close">&times;</button>
     <a href="index.html">Home</a>
     <a href="properties.html">Properties</a>
-    <a href="catalog.html">Catalog</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
     <a href="calculator.html" class="btn btn--primary">Property Calculator</a>
   </div>
-
   <div class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Home</a> › Properties</div>
@@ -48,10 +43,8 @@
       <p>Browse our full portfolio of residential and commercial listings</p>
     </div>
   </div>
-
 <section class="section section--gray">
     <div class="container">
-
       <!-- Filters -->
       <div class="filters-bar">
         <div class="filter-group">
@@ -98,20 +91,15 @@
         </div>
         <button class="btn btn--primary" style="align-self:flex-end">Search</button>
       </div>
-
       <!-- Results count -->
       <p id="results-count" style="margin-bottom:16px;font-size:0.88rem;color:var(--text-light)">Loading properties…</p>
-
       <!-- Grid (populated by Firebase) -->
       <div id="properties-grid" class="properties-grid"></div>
-
       <p id="no-results" style="display:none;text-align:center;padding:60px 0;color:var(--text-light);font-size:1rem">
         No properties match your filters. Try adjusting your search.
       </p>
-
     </div>
   </section>
-
   <footer class="footer">
     <div class="container">
       <div class="footer__bottom" style="border-top:none;padding:24px 0">
@@ -120,13 +108,11 @@
       </div>
     </div>
   </footer>
-
   <div class="toast"></div>
   <script src="assets/js/main.js"></script>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
     const firebaseConfig = {
       apiKey: "AIzaSyAvwGfr3SOpEUziOfpIf0ejPviiprNmCmc",
       authDomain: "xyz-properties.firebaseapp.com",
@@ -135,10 +121,8 @@
       messagingSenderId: "103338758906",
       appId: "1:103338758906:web:2ce20b89385ff01a4d2f43"
     };
-
     const app = initializeApp(firebaseConfig);
     const db  = getFirestore(app);
-
     const SEED = [
       { title: "Modern Family Home with Garden",  location: "Greenview Heights",        price: 485000,   priceDisplay: "$485,000",    status: "sale", type: "Luxury Residences", bedrooms: 4, bathrooms: 3, sqft: 2400,  image: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=400&fit=crop&auto=format&q=80", featured: false, isNew: false },
       { title: "Premium Office Space — Floor 12", location: "Central Business District", price: 8500,   priceDisplay: "$8,500/mo",   status: "rent", type: "Office Spaces",     bedrooms: 0, bathrooms: 0, sqft: 3200,  image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop&auto=format&q=80", featured: false, isNew: false },
@@ -147,10 +131,8 @@
       { title: "Retail Strip Mall — Corner Lot",  location: "Harbor View, Eastside",    price: 1250000,  priceDisplay: "$1,250,000",  status: "sale", type: "Commercial Lots",   bedrooms: 0, bathrooms: 0, sqft: 8500,  image: "https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600&h=400&fit=crop&auto=format&q=80", featured: false, isNew: false },
       { title: "Executive Villa with Pool",       location: "Palm Ridge, Northside",    price: 875000,   priceDisplay: "$875,000",    status: "sale", type: "Luxury Residences", bedrooms: 5, bathrooms: 4, sqft: 4800,  image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=600&h=400&fit=crop&auto=format&q=80", featured: true,  isNew: false }
     ];
-
     const svgHeart = `<svg width="16" height="16" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>`;
     const svgPin  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`;
-
     function buildCard(p) {
       const badges = [];
       if (p.status === 'sale') badges.push(`<span class="badge badge--sale">For Sale</span>`);
@@ -159,13 +141,11 @@
       if (p.type === 'Commercial Lots')  badges.push(`<span class="badge badge--commercial">Commercial</span>`);
       if (p.featured) badges.push(`<span class="badge badge--featured">Featured</span>`);
       if (p.isNew)    badges.push(`<span class="badge badge--new">New</span>`);
-
       const meta = p.bedrooms
         ? `<span class="meta-item">🛏 ${p.bedrooms} Beds</span>
            <span class="meta-item">🚿 ${p.bathrooms} Bath${p.bathrooms !== 1 ? 's' : ''}</span>
            <span class="meta-item">📐 ${p.sqft.toLocaleString()} sqft</span>`
         : `<span class="meta-item">📐 ${p.sqft.toLocaleString()} sqft</span>`;
-
       return `
         <a href="property.html" class="property-card">
           <div class="property-card__image">
@@ -181,16 +161,13 @@
           </div>
         </a>`;
     }
-
     let allProperties = [];
-
     function applyFilters() {
       const keyword  = (document.querySelector('.filters-bar input[type="text"]')?.value || '').toLowerCase();
       const type     = document.getElementById('f-type')?.value    || '';
       const status   = document.getElementById('f-status')?.value  || '';
       const minBeds  = parseInt(document.getElementById('f-beds')?.value) || 0;
       const maxPrice = parseInt(document.getElementById('f-price')?.value) || 0;
-
       const filtered = allProperties.filter(p => {
         if (keyword && !p.title.toLowerCase().includes(keyword) && !p.location.toLowerCase().includes(keyword)) return false;
         if (type   && p.type !== type) return false;
@@ -200,11 +177,9 @@
         if (maxPrice && p.price > maxPrice) return false;
         return true;
       });
-
       const grid = document.getElementById('properties-grid');
       const none = document.getElementById('no-results');
       const count = document.getElementById('results-count');
-
       if (filtered.length === 0) {
         grid.innerHTML = '';
         none.style.display = 'block';
@@ -215,33 +190,25 @@
         count.textContent = `${filtered.length} propert${filtered.length === 1 ? 'y' : 'ies'} found`;
       }
     }
-
     async function init() {
       const col = collection(db, 'properties');
       let snap = await getDocs(col);
-
       if (snap.empty) {
         await Promise.all(SEED.map(p => addDoc(col, p)));
         snap = await getDocs(col);
       }
-
       allProperties = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-
       // Pre-fill filters from URL params (hero search)
       const params = new URLSearchParams(window.location.search);
       if (params.get('type'))     { const el = document.getElementById('f-type');   if (el) el.value = params.get('type'); }
       if (params.get('status'))   { const el = document.getElementById('f-status'); if (el) el.value = params.get('status'); }
       if (params.get('location')) { const el = document.querySelector('.filters-bar input[type="text"]'); if (el) el.value = params.get('location'); }
       if (params.get('price'))    { const el = document.getElementById('f-price');  if (el) el.value = params.get('price'); }
-
       applyFilters();
-
       document.querySelector('.filters-bar input[type="text"]')?.addEventListener('input', applyFilters);
       ['f-type','f-status','f-beds','f-price'].forEach(id => document.getElementById(id)?.addEventListener('change', applyFilters));
       document.querySelector('.filters-bar .btn--primary')?.addEventListener('click', applyFilters);
-
     }
-
     init();
   </script>
 </body>

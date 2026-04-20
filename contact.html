@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
 </head>
 <body>
-
   <nav class="navbar">
     <div class="container navbar__inner">
       <a href="index.html" class="navbar__logo">
@@ -19,7 +18,6 @@
       <div class="navbar__links">
         <a href="index.html">Home</a>
         <a href="properties.html">Properties</a>
-        <a href="catalog.html">Catalog</a>
         <a href="about.html">About</a>
         <a href="contact.html" class="active">Contact</a>
       </div>
@@ -30,18 +28,14 @@
       <button class="hamburger"><span></span><span></span><span></span></button>
     </div>
   </nav>
-
   <div class="mobile-menu">
     <button class="mobile-menu__close">&times;</button>
     <a href="index.html">Home</a>
     <a href="properties.html">Properties</a>
-        <a href="catalog.html">Catalog</a>
-    <a href="catalog.html">Catalog</a>
         <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
     <a href="calculator.html" class="btn btn--primary">Property Calculator</a>
   </div>
-
   <div class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Home</a> › Contact</div>
@@ -49,15 +43,12 @@
       <p>Our team is ready to help — reach out anytime</p>
     </div>
   </div>
-
   <section class="section section--white">
     <div class="container contact-grid">
-
       <!-- Info -->
       <div>
         <p class="section-label">Contact Info</p>
         <h2 class="section-title" style="margin-bottom:32px">We'd Love to Hear From You</h2>
-
         <div class="contact-info">
           <div class="contact-info-item">
             <div class="contact-info-icon">
@@ -96,14 +87,12 @@
             </div>
           </div>
         </div>
-
         <div class="map-placeholder" style="margin-top:32px">
           <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <span>123 Business Avenue, Downtown</span>
           <small style="font-size:0.78rem">Map integration available with Google Maps API key</small>
         </div>
       </div>
-
       <!-- Form -->
       <div class="contact-form-card">
         <h3>Send Us a Message</h3>
@@ -127,10 +116,8 @@
           <button type="submit" class="btn btn--primary" style="width:100%;justify-content:center">Send Message</button>
         </form>
       </div>
-
     </div>
   </section>
-
   <footer class="footer">
     <div class="container">
       <div class="footer__bottom" style="border-top:none;padding:24px 0">
@@ -139,13 +126,11 @@
       </div>
     </div>
   </footer>
-
   <div class="toast"></div>
   <script src="assets/js/main.js"></script>
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
     const firebaseConfig = {
       apiKey: "AIzaSyAvwGfr3SOpEUziOfpIf0ejPviiprNmCmc",
       authDomain: "xyz-properties.firebaseapp.com",
@@ -154,10 +139,8 @@
       messagingSenderId: "103338758906",
       appId: "1:103338758906:web:2ce20b89385ff01a4d2f43"
     };
-
     const app = initializeApp(firebaseConfig);
     const db  = getFirestore(app);
-
     function showToast(msg, type = '') {
       const toast = document.querySelector('.toast');
       toast.textContent = msg;
@@ -165,16 +148,13 @@
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 4000);
     }
-
     document.getElementById('contactForm').addEventListener('submit', async (e) => {
       e.preventDefault();
       const form = e.target;
       const btn  = form.querySelector('button[type="submit"]');
       const orig = btn.textContent;
-
       btn.textContent = 'Sending…';
       btn.disabled = true;
-
       try {
         await addDoc(collection(db, 'inquiries'), {
           firstName: form.querySelector('input[placeholder="First Name"]').value.trim(),
@@ -185,14 +165,12 @@
           message:   form.querySelector('textarea').value.trim(),
           createdAt: serverTimestamp()
         });
-
         showToast('✅ Message sent! We\'ll be in touch soon.', 'success');
         form.reset();
       } catch (err) {
         console.error(err);
         showToast('❌ Something went wrong. Please try again.');
       }
-
       btn.textContent = orig;
       btn.disabled = false;
     });

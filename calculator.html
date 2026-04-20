@@ -10,14 +10,12 @@
   <style>
     /* ── Calculator Page ─────────────────────────────────────────────────── */
     .calc-page { padding: 60px 0 80px; background: var(--bg); }
-
     .calc-layout {
       display: grid;
       grid-template-columns: 1.4fr 1fr;
       gap: 32px;
       align-items: start;
     }
-
     /* ── Form card ───────────────────────────────────────────────────────── */
     .calc-form-card {
       background: var(--white);
@@ -37,7 +35,6 @@
     .calc-form-card__header h2 { color: var(--white); font-size: 1.3rem; }
     .calc-form-card__header p { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 2px; }
     .calc-form-card__body { padding: 28px; }
-
     /* ── Step indicator ──────────────────────────────────────────────────── */
     .steps {
       display: flex;
@@ -71,11 +68,9 @@
     .step--done .step__num { background: #059669; color: var(--white); }
     .step-line { flex: 1; height: 2px; background: var(--border); margin: 0 8px; transition: background 0.3s; }
     .step-line--done { background: #059669; }
-
     /* ── Form sections ───────────────────────────────────────────────────── */
     .form-section { display: none; }
     .form-section.active { display: block; }
-
     .form-section__title {
       font-size: 1rem;
       font-weight: 700;
@@ -87,11 +82,9 @@
       align-items: center;
       gap: 8px;
     }
-
     .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
     .field-grid--3 { grid-template-columns: 1fr 1fr 1fr; }
     .field-full { margin-bottom: 16px; }
-
     .field { display: flex; flex-direction: column; gap: 6px; }
     .field label {
       font-size: 0.78rem;
@@ -114,7 +107,6 @@
     }
     .field input:focus,
     .field select:focus { border-color: var(--primary); }
-
     /* Range slider */
     .field input[type="range"] {
       padding: 6px 0;
@@ -136,7 +128,6 @@
       color: var(--primary);
       margin-top: 4px;
     }
-
     /* Checkbox extras */
     .extras-grid {
       display: grid;
@@ -160,7 +151,6 @@
     .extra-item.checked { border-color: var(--primary); background: rgba(27,58,92,0.04); }
     .extra-item__label { font-size: 0.85rem; font-weight: 500; color: var(--text); }
     .extra-item__price { font-size: 0.75rem; color: var(--accent); font-weight: 600; margin-left: auto; }
-
     /* Step nav buttons */
     .step-nav {
       display: flex;
@@ -169,7 +159,6 @@
       padding-top: 20px;
       border-top: 1px solid var(--border);
     }
-
     /* ── Result card ─────────────────────────────────────────────────────── */
     .result-card {
       background: var(--white);
@@ -186,9 +175,7 @@
     }
     .result-card__header h3 { color: var(--white); font-size: 1rem; margin-bottom: 4px; }
     .result-card__header p { color: rgba(255,255,255,0.65); font-size: 0.82rem; }
-
     .result-card__body { padding: 24px; }
-
     .result-total {
       text-align: center;
       padding: 24px;
@@ -204,7 +191,6 @@
       line-height: 1;
     }
     .result-total__range { font-size: 0.78rem; color: var(--text-light); margin-top: 6px; }
-
     .result-breakdown { margin-bottom: 20px; }
     .result-breakdown h4 { font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
     .breakdown-item {
@@ -220,7 +206,6 @@
     .breakdown-item__value { font-weight: 600; color: var(--text); }
     .breakdown-item--total .breakdown-item__label { color: var(--primary); font-weight: 700; }
     .breakdown-item--total .breakdown-item__value { color: var(--primary); font-size: 1rem; }
-
     .result-note {
       background: #FEF3C7;
       border: 1px solid #FCD34D;
@@ -231,9 +216,7 @@
       line-height: 1.6;
       margin-bottom: 20px;
     }
-
     .result-actions { display: flex; flex-direction: column; gap: 10px; }
-
     /* ── Info boxes ──────────────────────────────────────────────────────── */
     .info-boxes {
       display: grid;
@@ -251,7 +234,6 @@
     .info-box__icon { font-size: 1.8rem; margin-bottom: 10px; }
     .info-box h4 { color: var(--primary); font-size: 0.9rem; margin-bottom: 6px; }
     .info-box p { font-size: 0.8rem; color: var(--text-light); line-height: 1.6; }
-
     @media (max-width: 1024px) {
       .calc-layout { grid-template-columns: 1fr; }
       .result-card { position: static; }
@@ -265,7 +247,6 @@
   </style>
 </head>
 <body>
-
   <!-- NAVBAR -->
   <nav class="navbar">
     <div class="container navbar__inner">
@@ -276,7 +257,6 @@
       <div class="navbar__links">
         <a href="index.html">Home</a>
         <a href="properties.html">Properties</a>
-        <a href="catalog.html">Catalog</a>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
       </div>
@@ -287,17 +267,14 @@
       <button class="hamburger"><span></span><span></span><span></span></button>
     </div>
   </nav>
-
   <div class="mobile-menu">
     <button class="mobile-menu__close">&times;</button>
     <a href="index.html">Home</a>
     <a href="properties.html">Properties</a>
-    <a href="catalog.html">Catalog</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
     <a href="calculator.html" class="btn btn--primary">Property Calculator</a>
   </div>
-
   <!-- PAGE HERO -->
   <div class="page-hero">
     <div class="container">
@@ -306,12 +283,10 @@
       <p>Get an instant estimate for your property move — quick, easy, and free</p>
     </div>
   </div>
-
   <!-- CALCULATOR -->
   <section class="calc-page">
     <div class="container">
       <div class="calc-layout">
-
         <!-- FORM -->
         <div class="calc-form-card">
           <div class="calc-form-card__header">
@@ -324,9 +299,7 @@
               <p>Fill in the details below for an instant estimate</p>
             </div>
           </div>
-
           <div class="calc-form-card__body">
-
             <!-- Step indicator -->
             <div class="steps">
               <div class="step step--active" id="step-ind-1">
@@ -344,14 +317,12 @@
                 <div class="step__label">Extras</div>
               </div>
             </div>
-
             <!-- STEP 1: Property Info -->
             <div class="form-section active" id="section-1">
               <div class="form-section__title">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
                 Property Details
               </div>
-
               <div class="field-grid">
                 <div class="field">
                   <label>Property Type</label>
@@ -380,13 +351,11 @@
                   </select>
                 </div>
               </div>
-
               <div class="field-full field">
                 <label>Property Size (sqm) — <span id="sizeVal">0</span> sqm</label>
                 <input type="range" id="aptSize" min="0" max="300" value="0" step="5" />
                 <div class="range-labels"><span>0 sqm</span><span>300 sqm</span></div>
               </div>
-
               <!-- Furnished / Move Size -->
               <div class="field-grid">
                 <div class="field">
@@ -409,7 +378,6 @@
                   </select>
                 </div>
               </div>
-
               <!-- Large Items -->
               <div class="field-full field">
                 <label>Number of Large Items (sofas, beds, wardrobes)</label>
@@ -422,7 +390,6 @@
                   <option value="15">10+ items</option>
                 </select>
               </div>
-
               <!-- Special Items -->
               <div class="field-full field">
                 <label>Special / Fragile Items</label>
@@ -433,7 +400,6 @@
                   <option value="both">Both</option>
                 </select>
               </div>
-
               <!-- Floor & Elevator — shown conditionally based on property type -->
               <div id="floorElevatorRow" class="field-grid" style="display:none">
                 <div class="field">
@@ -455,7 +421,6 @@
                   </select>
                 </div>
               </div>
-
               <!-- Parking Access -->
               <div class="field-grid">
                 <div class="field">
@@ -475,7 +440,6 @@
                   </select>
                 </div>
               </div>
-
               <!-- Pet Transport -->
               <div class="field-full field">
                 <label>Pet Transport</label>
@@ -486,20 +450,17 @@
                   <option value="multiple">Multiple Pets</option>
                 </select>
               </div>
-
               <div class="step-nav">
                 <span></span>
                 <button class="btn btn--primary" onclick="goStep(2)">Next: Move Details →</button>
               </div>
             </div>
-
             <!-- STEP 2: Move Details -->
             <div class="form-section" id="section-2">
               <div class="form-section__title">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                 Move Details
               </div>
-
               <div class="field-grid">
                 <div class="field">
                   <label>From (City / Area)</label>
@@ -510,13 +471,11 @@
                   <input type="text" id="toCity" placeholder="e.g. Jerusalem" />
                 </div>
               </div>
-
               <div class="field-full field">
                 <label>Estimated Distance (km) — <span id="distVal">50</span> km</label>
                 <input type="range" id="distance" min="1" max="500" value="50" step="1" />
                 <div class="range-labels"><span>1 km</span><span>500 km</span></div>
               </div>
-
               <div class="field-grid">
                 <div class="field">
                   <label>Move Date</label>
@@ -531,7 +490,6 @@
                   </select>
                 </div>
               </div>
-
               <div class="field-grid">
                 <div class="field">
                   <label>Destination Floor</label>
@@ -552,20 +510,17 @@
                   </select>
                 </div>
               </div>
-
               <div class="step-nav">
                 <button class="btn btn--outline" onclick="goStep(1)">← Back</button>
                 <button class="btn btn--primary" onclick="goStep(3)">Next: Extras →</button>
               </div>
             </div>
-
             <!-- STEP 3: Extras -->
             <div class="form-section" id="section-3">
               <div class="form-section__title">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
                 Additional Services
               </div>
-
               <div class="extras-grid" id="extrasGrid">
                 <label class="extra-item" onclick="toggleExtra(this)">
                   <input type="checkbox" value="packing" data-cost="150" />
@@ -624,7 +579,6 @@
                   <span class="extra-item__price">+$200</span>
                 </label>
               </div>
-
               <div class="step-nav">
                 <button class="btn btn--outline" onclick="goStep(2)">← Back</button>
                 <button class="btn btn--primary" onclick="calculate()">
@@ -633,10 +587,8 @@
                 </button>
               </div>
             </div>
-
           </div>
         </div>
-
         <!-- RESULT -->
         <div class="result-card" id="resultCard">
           <div class="result-card__header">
@@ -644,13 +596,11 @@
             <p>Complete the form to see your estimate</p>
           </div>
           <div class="result-card__body">
-
             <!-- Placeholder shown before calculation -->
             <div id="resultPlaceholder" style="text-align:center;padding:40px 20px;">
               <div style="font-size:3rem;margin-bottom:16px">🚛</div>
               <p style="color:var(--text-light);font-size:0.9rem;line-height:1.7">Fill in your move details across the 3 steps and click <strong>Calculate Now</strong> to get your instant estimate.</p>
             </div>
-
             <!-- Result shown after calculation -->
             <div id="resultOutput" style="display:none">
               <div class="result-total">
@@ -658,7 +608,6 @@
                 <div class="result-total__amount" id="totalAmount"></div>
                 <div class="result-total__range" id="totalRange"></div>
               </div>
-
               <div class="result-breakdown">
                 <h4>Cost Breakdown</h4>
                 <div class="breakdown-item">
@@ -702,22 +651,17 @@
                   <span class="breakdown-item__value" id="brkTotal"></span>
                 </div>
               </div>
-
               <div class="result-note">
                 ⚠️ This is an estimated cost only. Final pricing depends on actual inventory, access conditions, and availability. Contact us for a confirmed quote.
               </div>
-
               <div class="result-actions">
                 <a href="contact.html" class="btn btn--primary" style="justify-content:center">Get Official Quote</a>
                 <button class="btn btn--outline" style="justify-content:center" onclick="resetCalc()">Start Over</button>
               </div>
             </div>
-
           </div>
         </div>
-
       </div>
-
       <!-- Info boxes -->
       <div class="info-boxes">
         <div class="info-box">
@@ -736,10 +680,8 @@
           <p>All moves include basic insurance. Optional full-coverage available on request.</p>
         </div>
       </div>
-
     </div>
   </section>
-
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
@@ -749,7 +691,6 @@
       </div>
     </div>
   </footer>
-
   <div class="toast"></div>
   <script src="assets/js/main.js"></script>
   <script>
@@ -757,12 +698,10 @@
     function onPropTypeChange(type) {
       const floorRow    = document.getElementById('floorElevatorRow');
       const elevField   = document.getElementById('elevatorField');
-
       // Types that have floors + elevator
       const hasFloorAndElevator = ['apartment', 'condo', 'townhouse', 'duplex'];
       // Types that have floors only (no elevator)
       const hasFloorOnly = ['house', 'bungalow', 'villa', 'tiny', 'mobile'];
-
       if (hasFloorAndElevator.includes(type)) {
         floorRow.style.display = 'grid';
         elevField.style.display = 'flex';
@@ -773,7 +712,6 @@
         floorRow.style.display = 'none';
       }
     }
-
     // ── Step navigation ───────────────────────────────────────────────────────
     function goStep(n) {
       [1,2,3].forEach(i => {
@@ -788,7 +726,6 @@
       });
       if (n === 3) calculate();
     }
-
     // ── Range display ─────────────────────────────────────────────────────────
     document.getElementById('aptSize').addEventListener('input', function() {
       document.getElementById('sizeVal').textContent = this.value;
@@ -796,13 +733,11 @@
     document.getElementById('distance').addEventListener('input', function() {
       document.getElementById('distVal').textContent = this.value;
     });
-
     // ── Extras toggle ─────────────────────────────────────────────────────────
     function toggleExtra(el) {
       el.classList.toggle('checked');
       calculate();
     }
-
     // ── Core calculation ──────────────────────────────────────────────────────
     function calculate() {
       const size        = parseInt(document.getElementById('aptSize').value)    || 0;
@@ -820,48 +755,37 @@
       const parkingFrom = document.getElementById('parkingFrom').value || 'easy';
       const parkingTo   = document.getElementById('parkingTo').value   || 'easy';
       const petTransport= document.getElementById('petTransport').value|| 'none';
-
       // Base fee by size + rooms
       let base = 200 + (size * 2.5) + (rooms * 80);
-
       // Move size multiplier
       const moveSizeMultiplier = { studio: 0.7, small: 1.0, medium: 1.4, large: 1.9 };
       base *= (moveSizeMultiplier[moveSize] || 1.0);
-
       // Furnishing surcharge
       if (furnished === 'fully')   base *= 1.30;
       if (furnished === 'partial') base *= 1.15;
-
       // Large items charge
       const largeItemsCharge = largeItems * 25;
-
       // Special items charge
       const specialCharge = specialItems === 'some' ? 150 : specialItems === 'appliances' ? 200 : specialItems === 'both' ? 320 : 0;
-
       // Distance charge
       let distCharge = distance <= 10 ? 50 : distance <= 50 ? 100 : distance <= 150 ? 200 : distance * 1.2;
-
       // Floor surcharge
       let floorCharge = 0;
       if (fromFloor > 0 && elevator === 'no') floorCharge += fromFloor * 40;
       if (toFloor > 0 && toElev === 'no')     floorCharge += toFloor * 40;
       if (fromFloor > 3 || toFloor > 3)       floorCharge += 60;
-
       // Parking surcharge
       let parkingCharge = 0;
       if (parkingFrom === 'street')    parkingCharge += 40;
       if (parkingFrom === 'difficult') parkingCharge += 100;
       if (parkingTo === 'street')      parkingCharge += 40;
       if (parkingTo === 'difficult')   parkingCharge += 100;
-
       // Pet transport charge
       const petCharge = petTransport === 'small' ? 80 : petTransport === 'large' ? 150 : petTransport === 'multiple' ? 220 : 0;
-
       // Time surcharge
       let timeCharge = 0;
       if (moveTime === 'weekend') timeCharge = base * 0.15;
       if (moveTime === 'holiday') timeCharge = base * 0.30;
-
       // Extras (step 3 checkboxes)
       let extrasTotal = 0;
       document.querySelectorAll('#extrasGrid input[type="checkbox"]').forEach(cb => {
@@ -869,15 +793,12 @@
           extrasTotal += parseInt(cb.dataset.cost) || 0;
         }
       });
-
       const total = Math.round(base + distCharge + floorCharge + parkingCharge + petCharge + largeItemsCharge + specialCharge + timeCharge + extrasTotal);
       const low   = Math.round(total * 0.9);
       const high  = Math.round(total * 1.15);
-
       // Show result, hide placeholder
       document.getElementById('resultPlaceholder').style.display = 'none';
       document.getElementById('resultOutput').style.display = 'block';
-
       // Update UI
       document.getElementById('totalAmount').textContent = '$' + total.toLocaleString();
       document.getElementById('totalRange').textContent  = 'Range: $' + low.toLocaleString() + ' – $' + high.toLocaleString();
@@ -892,7 +813,6 @@
       document.getElementById('brkExtras').textContent   = extrasTotal > 0    ? '$' + extrasTotal.toLocaleString()                  : 'None';
       document.getElementById('brkTotal').textContent    = '$' + total.toLocaleString();
     }
-
     function resetCalc() {
       goStep(1);
       document.querySelectorAll('.extra-item').forEach(el => el.classList.remove('checked'));
@@ -904,7 +824,6 @@
       document.getElementById('resultOutput').style.display = 'none';
       document.getElementById('resultPlaceholder').style.display = 'block';
     }
-
     // No auto-calculate on load — user must complete the form
   </script>
 </body>
