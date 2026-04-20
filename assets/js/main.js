@@ -99,6 +99,7 @@ if (statsBar) statsObserver.observe(statsBar);
 
 // ── Contact / inquiry form submit ─────────────────────────────────────────────
 $$('form').forEach(form => {
+  if (form.id === 'contactForm') return; // handled by Firebase in contact.html
   form.addEventListener('submit', e => {
     e.preventDefault();
     showToast('✅ Message sent! We\'ll be in touch soon.', 'success');

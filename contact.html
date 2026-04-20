@@ -141,5 +141,60 @@
 
   <div class="toast"></div>
   <script src="assets/js/main.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAvwGfr3SOpEUziOfpIf0ejPviiprNmCmc",
+      authDomain: "xyz-properties.firebaseapp.com",
+      projectId: "xyz-properties",
+      storageBucket: "xyz-properties.firebasestorage.app",
+      messagingSenderId: "103338758906",
+      appId: "1:103338758906:web:2ce20b89385ff01a4d2f43"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+
+    function showToast(msg, type = '') {
+      const toast = document.querySelector('.toast');
+      toast.textContent = msg;
+      toast.className = 'toast' + (type ? ' toast--' + type : '');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 4000);
+    }
+
+    document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const btn  = form.querySelector('button[type="submit"]');
+      const orig = btn.textContent;
+
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      try {
+        await addDoc(collection(db, 'inquiries'), {
+          firstName: form.querySelector('input[placeholder="First Name"]').value.trim(),
+          lastName:  form.querySelector('input[placeholder="Last Name"]').value.trim(),
+          email:     form.querySelector('input[type="email"]').value.trim(),
+          phone:     form.querySelector('input[type="tel"]').value.trim(),
+          interest:  form.querySelector('select').value,
+          message:   form.querySelector('textarea').value.trim(),
+          createdAt: serverTimestamp()
+        });
+
+        showToast('✅ Message sent! We\'ll be in touch soon.', 'success');
+        form.reset();
+      } catch (err) {
+        console.error(err);
+        showToast('❌ Something went wrong. Please try again.');
+      }
+
+      btn.textContent = orig;
+      btn.disabled = false;
+    });
+  </script>
 </body>
 </html>
