@@ -555,55 +555,60 @@
         <div class="result-card" id="resultCard">
           <div class="result-card__header">
             <h3>Estimated Moving Cost</h3>
-            <p>Updates as you fill in details</p>
+            <p>Complete the form to see your estimate</p>
           </div>
           <div class="result-card__body">
 
-            <div class="result-total">
-              <div class="result-total__label">Total Estimate</div>
-              <div class="result-total__amount" id="totalAmount">$—</div>
-              <div class="result-total__range" id="totalRange">Fill in details to get estimate</div>
+            <!-- Placeholder shown before calculation -->
+            <div id="resultPlaceholder" style="text-align:center;padding:40px 20px;">
+              <div style="font-size:3rem;margin-bottom:16px">🚛</div>
+              <p style="color:var(--text-light);font-size:0.9rem;line-height:1.7">Fill in your move details across the 3 steps and click <strong>Calculate Now</strong> to get your instant estimate.</p>
             </div>
 
-            <div class="result-breakdown">
-              <h4>Cost Breakdown</h4>
-              <div class="breakdown-item">
-                <span class="breakdown-item__label">Base moving fee</span>
-                <span class="breakdown-item__value" id="brkBase">—</span>
+            <!-- Result shown after calculation -->
+            <div id="resultOutput" style="display:none">
+              <div class="result-total">
+                <div class="result-total__label">Total Estimate</div>
+                <div class="result-total__amount" id="totalAmount"></div>
+                <div class="result-total__range" id="totalRange"></div>
               </div>
-              <div class="breakdown-item">
-                <span class="breakdown-item__label">Distance charge</span>
-                <span class="breakdown-item__value" id="brkDistance">—</span>
-              </div>
-              <div class="breakdown-item">
-                <span class="breakdown-item__label">Floor / stairs surcharge</span>
-                <span class="breakdown-item__value" id="brkFloor">—</span>
-              </div>
-              <div class="breakdown-item">
-                <span class="breakdown-item__label">Time surcharge</span>
-                <span class="breakdown-item__value" id="brkTime">—</span>
-              </div>
-              <div class="breakdown-item">
-                <span class="breakdown-item__label">Additional services</span>
-                <span class="breakdown-item__value" id="brkExtras">—</span>
-              </div>
-              <div class="breakdown-item breakdown-item--total">
-                <span class="breakdown-item__label">Total</span>
-                <span class="breakdown-item__value" id="brkTotal">—</span>
-              </div>
-            </div>
 
-            <div class="result-note">
-              ⚠️ This is an estimated cost only. Final pricing depends on actual inventory, access conditions, and availability. Contact us for a confirmed quote.
-            </div>
+              <div class="result-breakdown">
+                <h4>Cost Breakdown</h4>
+                <div class="breakdown-item">
+                  <span class="breakdown-item__label">Base moving fee</span>
+                  <span class="breakdown-item__value" id="brkBase"></span>
+                </div>
+                <div class="breakdown-item">
+                  <span class="breakdown-item__label">Distance charge</span>
+                  <span class="breakdown-item__value" id="brkDistance"></span>
+                </div>
+                <div class="breakdown-item">
+                  <span class="breakdown-item__label">Floor / stairs surcharge</span>
+                  <span class="breakdown-item__value" id="brkFloor"></span>
+                </div>
+                <div class="breakdown-item">
+                  <span class="breakdown-item__label">Time surcharge</span>
+                  <span class="breakdown-item__value" id="brkTime"></span>
+                </div>
+                <div class="breakdown-item">
+                  <span class="breakdown-item__label">Additional services</span>
+                  <span class="breakdown-item__value" id="brkExtras"></span>
+                </div>
+                <div class="breakdown-item breakdown-item--total">
+                  <span class="breakdown-item__label">Total</span>
+                  <span class="breakdown-item__value" id="brkTotal"></span>
+                </div>
+              </div>
 
-            <div class="result-actions">
-              <a href="contact.html" class="btn btn--primary" style="justify-content:center">
-                Get Official Quote
-              </a>
-              <button class="btn btn--outline" style="justify-content:center" onclick="resetCalc()">
-                Start Over
-              </button>
+              <div class="result-note">
+                ⚠️ This is an estimated cost only. Final pricing depends on actual inventory, access conditions, and availability. Contact us for a confirmed quote.
+              </div>
+
+              <div class="result-actions">
+                <a href="contact.html" class="btn btn--primary" style="justify-content:center">Get Official Quote</a>
+                <button class="btn btn--outline" style="justify-content:center" onclick="resetCalc()">Start Over</button>
+              </div>
             </div>
 
           </div>
@@ -715,6 +720,10 @@
       const low   = Math.round(total * 0.9);
       const high  = Math.round(total * 1.15);
 
+      // Show result, hide placeholder
+      document.getElementById('resultPlaceholder').style.display = 'none';
+      document.getElementById('resultOutput').style.display = 'block';
+
       // Update UI
       document.getElementById('totalAmount').textContent = '$' + total.toLocaleString();
       document.getElementById('totalRange').textContent  = 'Range: $' + low.toLocaleString() + ' – $' + high.toLocaleString();
@@ -734,11 +743,8 @@
       document.getElementById('sizeVal').textContent = '80';
       document.getElementById('distance').value = 50;
       document.getElementById('distVal').textContent = '50';
-      document.getElementById('totalAmount').textContent = '$—';
-      document.getElementById('totalRange').textContent = 'Fill in details to get estimate';
-      ['brkBase','brkDistance','brkFloor','brkTime','brkExtras','brkTotal'].forEach(id => {
-        document.getElementById(id).textContent = '—';
-      });
+      document.getElementById('resultOutput').style.display = 'none';
+      document.getElementById('resultPlaceholder').style.display = 'block';
     }
 
     // No auto-calculate on load — user must complete the form
