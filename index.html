@@ -66,39 +66,32 @@
             <div class="search-grid">
               <div class="search-field">
                 <label>Type</label>
-                <select>
-                  <option>All Types</option>
-                  <option>Single-Family Detached</option>
-                  <option>Apartment / Flat</option>
-                  <option>Condominium (Condo)</option>
-                  <option>Townhouse / Rowhouse</option>
-                  <option>Bungalow</option>
-                  <option>Duplex</option>
-                  <option>Villa</option>
-                  <option>Tiny Home</option>
-                  <option>Mobile Home / Manufactured Home</option>
+                <select id="heroType">
+                  <option value="">All Types</option>
+                  <option value="Luxury Residences">Luxury Residences</option>
+                  <option value="Office Spaces">Office Spaces</option>
+                  <option value="Urban Condos">Urban Condos</option>
+                  <option value="Commercial Lots">Commercial Lots</option>
                 </select>
               </div>
               <div class="search-field">
                 <label>Buy or Rent</label>
-                <select>
-                  <option>Both</option>
-                  <option>For Sale</option>
-                  <option>For Rent</option>
+                <select id="heroStatus">
+                  <option value="">Both</option>
+                  <option value="For Sale">For Sale</option>
+                  <option value="For Rent">For Rent</option>
                 </select>
               </div>
               <div class="search-field">
                 <label>Location</label>
-                <input type="text" placeholder="City or neighborhood" />
+                <input type="text" id="heroLocation" placeholder="City or neighborhood" />
               </div>
               <div class="search-field">
                 <label>Budget</label>
-                <select>
-                  <option>Any</option>
-                  <option>Under $500k</option>
-                  <option>$500k–$1M</option>
-                  <option>$1M–$2M</option>
-                  <option>$2M+</option>
+                <select id="heroBudget">
+                  <option value="">Any</option>
+                  <option value="$500,000">Under $500k</option>
+                  <option value="$1M+">$500k–$1M</option>
                 </select>
               </div>
             </div>

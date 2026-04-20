@@ -125,5 +125,14 @@ function showToast(msg, type = '') {
 const heroSearch = $('.hero__search form');
 heroSearch?.addEventListener('submit', e => {
   e.preventDefault();
-  window.location.href = 'properties.html';
+  const params = new URLSearchParams();
+  const type     = document.getElementById('heroType')?.value;
+  const status   = document.getElementById('heroStatus')?.value;
+  const location = document.getElementById('heroLocation')?.value;
+  const budget   = document.getElementById('heroBudget')?.value;
+  if (type)     params.set('type', type);
+  if (status)   params.set('status', status);
+  if (location) params.set('location', location);
+  if (budget)   params.set('price', budget);
+  window.location.href = 'properties.html' + (params.toString() ? '?' + params.toString() : '');
 });

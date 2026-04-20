@@ -228,6 +228,14 @@ return true;
       }
 
       allProperties = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+      // Pre-fill filters from URL params (hero search)
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('type'))     { const el = document.getElementById('f-type');   if (el) el.value = params.get('type'); }
+      if (params.get('status'))   { const el = document.getElementById('f-status'); if (el) el.value = params.get('status'); }
+      if (params.get('location')) { const el = document.querySelector('.filters-bar input[type="text"]'); if (el) el.value = params.get('location'); }
+      if (params.get('price'))    { const el = document.getElementById('f-price');  if (el) el.value = params.get('price'); }
+
       applyFilters();
 
       document.querySelector('.filters-bar input[type="text"]')?.addEventListener('input', applyFilters);
