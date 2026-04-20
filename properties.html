@@ -61,39 +61,39 @@
         <div class="filter-group">
           <label>Type</label>
           <select id="f-type">
-            <option>All Types</option>
-            <option>Luxury Residences</option>
-            <option>Office Spaces</option>
-            <option>Urban Condos</option>
-            <option>Commercial Lots</option>
+            <option value="">All Types</option>
+            <option value="Luxury Residences">Luxury Residences</option>
+            <option value="Office Spaces">Office Spaces</option>
+            <option value="Urban Condos">Urban Condos</option>
+            <option value="Commercial Lots">Commercial Lots</option>
           </select>
         </div>
         <div class="filter-group">
           <label>Listing</label>
           <select id="f-status">
-            <option>Sale or Rent</option>
-            <option>For Sale</option>
-            <option>For Rent</option>
+            <option value="">Sale or Rent</option>
+            <option value="For Sale">For Sale</option>
+            <option value="For Rent">For Rent</option>
           </select>
         </div>
         <div class="filter-group">
           <label>Bedrooms</label>
           <select id="f-beds">
-            <option>Any</option>
-            <option>1+</option>
-            <option>2+</option>
-            <option>3+</option>
-            <option>4+</option>
+            <option value="0">Any</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
           </select>
         </div>
         <div class="filter-group">
           <label>Max Price</label>
           <select id="f-price">
-            <option>Any Price</option>
-            <option>$300,000</option>
-            <option>$500,000</option>
-            <option>$750,000</option>
-            <option>$1M+</option>
+            <option value="">Any Price</option>
+            <option value="300000">Under $300k</option>
+            <option value="500000">Under $500k</option>
+            <option value="750000">Under $750k</option>
+            <option value="1000000">Under $1M</option>
           </select>
         </div>
         <button class="btn btn--primary" style="align-self:flex-end">Search</button>
@@ -186,21 +186,19 @@
 
     function applyFilters() {
       const keyword  = (document.querySelector('.filters-bar input[type="text"]')?.value || '').toLowerCase();
-      const type     = document.getElementById('f-type')?.value    || 'All Types';
-      const status   = document.getElementById('f-status')?.value  || 'Sale or Rent';
+      const type     = document.getElementById('f-type')?.value    || '';
+      const status   = document.getElementById('f-status')?.value  || '';
       const minBeds  = parseInt(document.getElementById('f-beds')?.value) || 0;
-      const maxPrice = document.getElementById('f-price')?.value   || 'Any Price';
+      const maxPrice = parseInt(document.getElementById('f-price')?.value) || 0;
 
       const filtered = allProperties.filter(p => {
         if (keyword && !p.title.toLowerCase().includes(keyword) && !p.location.toLowerCase().includes(keyword)) return false;
-        if (type !== 'All Types' && p.type !== type) return false;
+        if (type   && p.type !== type) return false;
         if (status === 'For Sale' && p.status !== 'sale') return false;
         if (status === 'For Rent' && p.status !== 'rent') return false;
         if (minBeds && p.bedrooms < minBeds) return false;
-        if (maxPrice === '$300,000'  && p.price > 300000)   return false;
-        if (maxPrice === '$500,000'  && p.price > 500000)   return false;
-        if (maxPrice === '$750,000'  && p.price > 750000)   return false;
-return true;
+        if (maxPrice && p.price > maxPrice) return false;
+        return true;
       });
 
       const grid = document.getElementById('properties-grid');
