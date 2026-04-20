@@ -49,23 +49,7 @@
     </div>
   </div>
 
-  <!-- Subcategory Tabs -->
-  <div class="subcat-bar">
-    <div class="container">
-      <div class="subcat-tabs">
-        <button class="subcat-btn active" data-sub="all">All</button>
-        <button class="subcat-btn" data-sub="residential">Residential</button>
-        <button class="subcat-btn" data-sub="commercial">Commercial</button>
-        <button class="subcat-btn" data-sub="sale">For Sale</button>
-        <button class="subcat-btn" data-sub="rent">For Rent</button>
-        <button class="subcat-btn" data-sub="luxury">Luxury</button>
-        <button class="subcat-btn" data-sub="new">New Listings</button>
-        <button class="subcat-btn" data-sub="industrial">Industrial</button>
-      </div>
-    </div>
-  </div>
-
-  <section class="section section--gray">
+<section class="section section--gray">
     <div class="container">
 
       <!-- Filters -->
@@ -199,7 +183,6 @@
     }
 
     let allProperties = [];
-    let activeSub = 'all';
 
     function applyFilters() {
       const keyword  = (document.querySelector('.filters-bar input[type="text"]')?.value || '').toLowerCase();
@@ -217,8 +200,7 @@
         if (maxPrice === '$300,000'  && p.price > 300000)   return false;
         if (maxPrice === '$500,000'  && p.price > 500000)   return false;
         if (maxPrice === '$750,000'  && p.price > 750000)   return false;
-        if (activeSub !== 'all' && !(p.subCategory || []).includes(activeSub)) return false;
-        return true;
+return true;
       });
 
       const grid = document.getElementById('properties-grid');
@@ -252,14 +234,6 @@
       ['f-type','f-status','f-beds','f-price'].forEach(id => document.getElementById(id)?.addEventListener('change', applyFilters));
       document.querySelector('.filters-bar .btn--primary')?.addEventListener('click', applyFilters);
 
-      document.querySelectorAll('.subcat-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.subcat-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          activeSub = btn.dataset.sub;
-          applyFilters();
-        });
-      });
     }
 
     init();
