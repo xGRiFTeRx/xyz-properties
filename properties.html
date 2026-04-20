@@ -169,7 +169,7 @@
       return `
         <a href="property.html" class="property-card">
           <div class="property-card__image">
-            <img src="${p.image}" alt="${p.title}" loading="lazy" />
+            <img src="${p.image}" alt="${p.title}" loading="lazy" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&h=400&fit=crop&auto=format&q=80'" />
             <div class="property-card__badges">${badges.join('')}</div>
             <button class="property-card__favorite" onclick="event.preventDefault();this.classList.toggle('active')">${svgHeart}</button>
           </div>
