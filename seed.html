@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seed Database — XYZ Properties</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <style>
+    body { display: flex; align-items: center; justify-content: center; min-height: 100vh; background: var(--bg); }
+    .seed-card { background: var(--white); border-radius: var(--radius); padding: 48px; max-width: 480px; width: 100%; text-align: center; border: 1px solid var(--border); box-shadow: var(--shadow); }
+    .seed-card h2 { color: var(--primary); margin-bottom: 8px; font-family: var(--font); font-size: 1.4rem; }
+    .seed-card p { color: var(--text-light); font-size: 0.9rem; margin-bottom: 28px; }
+    #log { text-align: left; background: var(--bg); border-radius: var(--radius-sm); padding: 16px; font-size: 0.82rem; color: var(--text-light); min-height: 80px; margin-top: 20px; line-height: 1.9; display: none; }
+    .done { color: #059669; font-weight: 600; }
+    .err  { color: #DC2626; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="seed-card">
+    <h2>Seed Properties Database</h2>
+    <p>This will clear all existing properties and add 20 fresh listings (5 per category). Open this page once, then you can delete it.</p>
+    <button id="seedBtn" class="btn btn--primary" style="width:100%;justify-content:center">Seed Database</button>
+    <div id="log"></div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getFirestore, collection, getDocs, deleteDoc, addDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyAvwGfr3SOpEUziOfpIf0ejPviiprNmCmc",
+      authDomain: "xyz-properties.firebaseapp.com",
+      projectId: "xyz-properties",
+      storageBucket: "xyz-properties.firebasestorage.app",
+      messagingSenderId: "103338758906",
+      appId: "1:103338758906:web:2ce20b89385ff01a4d2f43"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db  = getFirestore(app);
+
+    const PROPERTIES = [
+      // ── Luxury Residences ───────────────────────────────────────────────────
+      { title: "Modern Family Home with Garden",   location: "Greenview Heights, Northside",   price: 485000,   priceDisplay: "$485,000",     status: "sale", type: "Luxury Residences", bedrooms: 4, bathrooms: 3, sqft: 2400,  image: "https://picsum.photos/seed/luxhome1/600/400", featured: true,  isNew: false },
+      { title: "Executive Villa with Pool",        location: "Palm Ridge, Northside",          price: 875000,   priceDisplay: "$875,000",     status: "sale", type: "Luxury Residences", bedrooms: 5, bathrooms: 4, sqft: 4800,  image: "https://picsum.photos/seed/luxhome2/600/400", featured: false, isNew: false },
+      { title: "Beachfront Estate",                location: "Coastal Drive, Southshore",      price: 1250000,  priceDisplay: "$1,250,000",   status: "sale", type: "Luxury Residences", bedrooms: 6, bathrooms: 5, sqft: 5800,  image: "https://picsum.photos/seed/luxhome3/600/400", featured: false, isNew: true  },
+      { title: "Heritage Manor",                   location: "Oak Hill, Northside",            price: 990000,   priceDisplay: "$990,000",     status: "sale", type: "Luxury Residences", bedrooms: 5, bathrooms: 4, sqft: 4200,  image: "https://picsum.photos/seed/luxhome4/600/400", featured: false, isNew: false },
+      { title: "Penthouse Suite — Top Floor",      location: "Skyline Tower, Downtown",        price: 12000,    priceDisplay: "$12,000/mo",   status: "rent", type: "Luxury Residences", bedrooms: 3, bathrooms: 3, sqft: 2800,  image: "https://picsum.photos/seed/luxhome5/600/400", featured: false, isNew: false },
+
+      // ── Office Spaces ───────────────────────────────────────────────────────
+      { title: "Premium Office Space — Floor 12",  location: "Central Business District",      price: 8500,     priceDisplay: "$8,500/mo",    status: "rent", type: "Office Spaces", bedrooms: 0, bathrooms: 0, sqft: 3200,  image: "https://picsum.photos/seed/office1/600/400", featured: false, isNew: false },
+      { title: "Modern Co-working Hub",            location: "Innovation District, Downtown",  price: 4200,     priceDisplay: "$4,200/mo",    status: "rent", type: "Office Spaces", bedrooms: 0, bathrooms: 0, sqft: 2100,  image: "https://picsum.photos/seed/office2/600/400", featured: false, isNew: true  },
+      { title: "Corporate HQ Building",            location: "Business Park, Northside",       price: 2800000,  priceDisplay: "$2,800,000",   status: "sale", type: "Office Spaces", bedrooms: 0, bathrooms: 0, sqft: 12000, image: "https://picsum.photos/seed/office3/600/400", featured: true,  isNew: false },
+      { title: "Boutique Office Suite",            location: "High Street, Central",           price: 3800,     priceDisplay: "$3,800/mo",    status: "rent", type: "Office Spaces", bedrooms: 0, bathrooms: 0, sqft: 950,   image: "https://picsum.photos/seed/office4/600/400", featured: false, isNew: false },
+      { title: "Executive Office Floor",           location: "Tower One, CBD",                 price: 6500,     priceDisplay: "$6,500/mo",    status: "rent", type: "Office Spaces", bedrooms: 0, bathrooms: 0, sqft: 4500,  image: "https://picsum.photos/seed/office5/600/400", featured: false, isNew: false },
+
+      // ── Urban Condos ────────────────────────────────────────────────────────
+      { title: "Luxury City View Condominium",     location: "Skyline Tower, Midtown",         price: 320000,   priceDisplay: "$320,000",     status: "sale", type: "Urban Condos", bedrooms: 2, bathrooms: 2, sqft: 1100,  image: "https://picsum.photos/seed/condo1/600/400", featured: false, isNew: true  },
+      { title: "Cozy Suburban Apartment",          location: "Maplewood, Westside",            price: 2200,     priceDisplay: "$2,200/mo",    status: "rent", type: "Urban Condos", bedrooms: 2, bathrooms: 1, sqft: 850,   image: "https://picsum.photos/seed/condo2/600/400", featured: false, isNew: false },
+      { title: "Studio Loft Downtown",             location: "Arts District, Central",         price: 1800,     priceDisplay: "$1,800/mo",    status: "rent", type: "Urban Condos", bedrooms: 1, bathrooms: 1, sqft: 650,   image: "https://picsum.photos/seed/condo3/600/400", featured: false, isNew: false },
+      { title: "Corner Unit Condo",                location: "Riverfront, Eastside",           price: 285000,   priceDisplay: "$285,000",     status: "sale", type: "Urban Condos", bedrooms: 2, bathrooms: 2, sqft: 980,   image: "https://picsum.photos/seed/condo4/600/400", featured: false, isNew: false },
+      { title: "High-Rise Apartment — Floor 18",   location: "Midtown Heights",                price: 3500,     priceDisplay: "$3,500/mo",    status: "rent", type: "Urban Condos", bedrooms: 3, bathrooms: 2, sqft: 1400,  image: "https://picsum.photos/seed/condo5/600/400", featured: true,  isNew: false },
+
+      // ── Commercial Lots ─────────────────────────────────────────────────────
+      { title: "Retail Strip Mall — Corner Lot",   location: "Harbor View, Eastside",          price: 1250000,  priceDisplay: "$1,250,000",   status: "sale", type: "Commercial Lots", bedrooms: 0, bathrooms: 0, sqft: 8500,  image: "https://picsum.photos/seed/retail1/600/400", featured: false, isNew: false },
+      { title: "Shopfront — High Foot Traffic",    location: "Main Street, Central",           price: 3200,     priceDisplay: "$3,200/mo",    status: "rent", type: "Commercial Lots", bedrooms: 0, bathrooms: 0, sqft: 1200,  image: "https://picsum.photos/seed/retail2/600/400", featured: false, isNew: false },
+      { title: "Restaurant Space with Kitchen",    location: "Food Quarter, Downtown",         price: 4800,     priceDisplay: "$4,800/mo",    status: "rent", type: "Commercial Lots", bedrooms: 0, bathrooms: 0, sqft: 1800,  image: "https://picsum.photos/seed/retail3/600/400", featured: false, isNew: true  },
+      { title: "Corner Commercial Plot",           location: "Junction Road, Westside",        price: 780000,   priceDisplay: "$780,000",     status: "sale", type: "Commercial Lots", bedrooms: 0, bathrooms: 0, sqft: 5200,  image: "https://picsum.photos/seed/retail4/600/400", featured: false, isNew: false },
+      { title: "Retail Park Unit",                 location: "Westfield Boulevard",            price: 2100,     priceDisplay: "$2,100/mo",    status: "rent", type: "Commercial Lots", bedrooms: 0, bathrooms: 0, sqft: 2400,  image: "https://picsum.photos/seed/retail5/600/400", featured: true,  isNew: false }
+    ];
+
+    const log = document.getElementById('log');
+    function print(msg, cls = '') {
+      log.style.display = 'block';
+      log.innerHTML += `<div class="${cls}">${msg}</div>`;
+    }
+
+    document.getElementById('seedBtn').addEventListener('click', async () => {
+      const btn = document.getElementById('seedBtn');
+      btn.disabled = true;
+      btn.textContent = 'Working…';
+      log.innerHTML = '';
+      log.style.display = 'block';
+
+      try {
+        // Delete existing
+        print('Clearing existing properties…');
+        const snap = await getDocs(collection(db, 'properties'));
+        await Promise.all(snap.docs.map(d => deleteDoc(doc(db, 'properties', d.id))));
+        print(`Deleted ${snap.size} existing records.`);
+
+        // Add new
+        print('Adding 20 new properties…');
+        await Promise.all(PROPERTIES.map(p => addDoc(collection(db, 'properties'), p)));
+        print('All 20 properties added.', 'done');
+        print('✅ Done! You can now delete seed.html and visit <a href="properties.html">properties.html</a>', 'done');
+      } catch (err) {
+        print('Error: ' + err.message, 'err');
+      }
+
+      btn.textContent = 'Seed Complete';
+    });
+  </script>
+</body>
+</html>

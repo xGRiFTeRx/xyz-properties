@@ -62,9 +62,10 @@
           <label>Type</label>
           <select id="f-type">
             <option>All Types</option>
-            <option>Residential</option>
-            <option>Commercial</option>
-            <option>Industrial</option>
+            <option>Luxury Residences</option>
+            <option>Office Spaces</option>
+            <option>Urban Condos</option>
+            <option>Commercial Lots</option>
           </select>
         </div>
         <div class="filter-group">
@@ -154,8 +155,8 @@
       const badges = [];
       if (p.status === 'sale') badges.push(`<span class="badge badge--sale">For Sale</span>`);
       else                     badges.push(`<span class="badge badge--rent">For Rent</span>`);
-      if (p.type === 'Commercial') badges.push(`<span class="badge badge--commercial">Commercial</span>`);
-      if (p.type === 'Industrial') badges.push(`<span class="badge badge--commercial">Industrial</span>`);
+      if (p.type === 'Office Spaces')    badges.push(`<span class="badge badge--commercial">Office</span>`);
+      if (p.type === 'Commercial Lots')  badges.push(`<span class="badge badge--commercial">Commercial</span>`);
       if (p.featured) badges.push(`<span class="badge badge--featured">Featured</span>`);
       if (p.isNew)    badges.push(`<span class="badge badge--new">New</span>`);
 
