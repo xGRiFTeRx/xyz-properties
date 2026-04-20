@@ -99,7 +99,8 @@ if (statsBar) statsObserver.observe(statsBar);
 
 // ── Contact / inquiry form submit ─────────────────────────────────────────────
 $$('form').forEach(form => {
-  if (form.id === 'contactForm') return; // handled by Firebase in contact.html
+  if (form.id === 'contactForm') return;
+  if (form.id === 'heroSearchForm') return;
   form.addEventListener('submit', e => {
     e.preventDefault();
     showToast('✅ Message sent! We\'ll be in touch soon.', 'success');
@@ -122,7 +123,7 @@ function showToast(msg, type = '') {
 }
 
 // ── Search form (hero) ────────────────────────────────────────────────────────
-const heroSearch = $('.hero__search form');
+const heroSearch = document.getElementById('heroSearchForm') || $('.hero__search form');
 heroSearch?.addEventListener('submit', e => {
   e.preventDefault();
   const params = new URLSearchParams();
