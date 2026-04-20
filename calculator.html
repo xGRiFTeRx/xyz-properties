@@ -664,11 +664,9 @@
     // ── Range display ─────────────────────────────────────────────────────────
     document.getElementById('aptSize').addEventListener('input', function() {
       document.getElementById('sizeVal').textContent = this.value;
-      calculate();
     });
     document.getElementById('distance').addEventListener('input', function() {
       document.getElementById('distVal').textContent = this.value;
-      calculate();
     });
 
     // ── Extras toggle ─────────────────────────────────────────────────────────
@@ -743,8 +741,7 @@
       });
     }
 
-    // Run on load
-    calculate();
+    // No auto-calculate on load — user must complete the form
   </script>
 </body>
 </html>
