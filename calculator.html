@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Property Moving Calculator — XYZ Property Management</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Calculator Page ─────────────────────────────────────────────────── */
+    .calc-page { padding: 60px 0 80px; background: var(--bg); }
+
+    .calc-layout {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    /* ── Form card ───────────────────────────────────────────────────────── */
+    .calc-form-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .calc-form-card__header {
+      background: var(--primary);
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .calc-form-card__header svg { color: var(--accent); flex-shrink: 0; }
+    .calc-form-card__header h2 { color: var(--white); font-size: 1.3rem; }
+    .calc-form-card__header p { color: rgba(255,255,255,0.7); font-size: 0.85rem; margin-top: 2px; }
+    .calc-form-card__body { padding: 28px; }
+
+    /* ── Step indicator ──────────────────────────────────────────────────── */
+    .steps {
+      display: flex;
+      align-items: center;
+      margin-bottom: 32px;
+      gap: 0;
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex: 1;
+    }
+    .step__num {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--border);
+      color: var(--text-light);
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+    .step__label { font-size: 0.78rem; color: var(--text-light); font-weight: 500; }
+    .step--active .step__num { background: var(--primary); color: var(--white); }
+    .step--active .step__label { color: var(--primary); font-weight: 600; }
+    .step--done .step__num { background: #059669; color: var(--white); }
+    .step-line { flex: 1; height: 2px; background: var(--border); margin: 0 8px; transition: background 0.3s; }
+    .step-line--done { background: #059669; }
+
+    /* ── Form sections ───────────────────────────────────────────────────── */
+    .form-section { display: none; }
+    .form-section.active { display: block; }
+
+    .form-section__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--bg);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .field-grid--3 { grid-template-columns: 1fr 1fr 1fr; }
+    .field-full { margin-bottom: 16px; }
+
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .field input,
+    .field select {
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-family: var(--font);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s;
+      background: var(--white);
+    }
+    .field input:focus,
+    .field select:focus { border-color: var(--primary); }
+
+    /* Range slider */
+    .field input[type="range"] {
+      padding: 6px 0;
+      border: none;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-top: -8px;
+    }
+    .range-value {
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-top: 4px;
+    }
+
+    /* Checkbox extras */
+    .extras-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 4px;
+    }
+    .extra-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+    .extra-item:hover { border-color: var(--primary); }
+    .extra-item input[type="checkbox"] { accent-color: var(--primary); width: 16px; height: 16px; cursor: pointer; }
+    .extra-item.checked { border-color: var(--primary); background: rgba(27,58,92,0.04); }
+    .extra-item__label { font-size: 0.85rem; font-weight: 500; color: var(--text); }
+    .extra-item__price { font-size: 0.75rem; color: var(--accent); font-weight: 600; margin-left: auto; }
+
+    /* Step nav buttons */
+    .step-nav {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 28px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Result card ─────────────────────────────────────────────────────── */
+    .result-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 90px;
+      overflow: hidden;
+    }
+    .result-card__header {
+      background: var(--primary);
+      padding: 20px 24px;
+    }
+    .result-card__header h3 { color: var(--white); font-size: 1rem; margin-bottom: 4px; }
+    .result-card__header p { color: rgba(255,255,255,0.65); font-size: 0.82rem; }
+
+    .result-card__body { padding: 24px; }
+
+    .result-total {
+      text-align: center;
+      padding: 24px;
+      background: var(--bg);
+      border-radius: var(--radius-sm);
+      margin-bottom: 20px;
+    }
+    .result-total__label { font-size: 0.8rem; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+    .result-total__amount {
+      font-size: 2.6rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1;
+    }
+    .result-total__range { font-size: 0.78rem; color: var(--text-light); margin-top: 6px; }
+
+    .result-breakdown { margin-bottom: 20px; }
+    .result-breakdown h4 { font-size: 0.85rem; font-weight: 700; color: var(--primary); margin-bottom: 12px; }
+    .breakdown-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.85rem;
+    }
+    .breakdown-item:last-child { border-bottom: none; }
+    .breakdown-item__label { color: var(--text-light); }
+    .breakdown-item__value { font-weight: 600; color: var(--text); }
+    .breakdown-item--total .breakdown-item__label { color: var(--primary); font-weight: 700; }
+    .breakdown-item--total .breakdown-item__value { color: var(--primary); font-size: 1rem; }
+
+    .result-note {
+      background: #FEF3C7;
+      border: 1px solid #FCD34D;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.8rem;
+      color: #92400E;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .result-actions { display: flex; flex-direction: column; gap: 10px; }
+
+    /* ── Info boxes ──────────────────────────────────────────────────────── */
+    .info-boxes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+    .info-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+    .info-box__icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .info-box h4 { color: var(--primary); font-size: 0.9rem; margin-bottom: 6px; }
+    .info-box p { font-size: 0.8rem; color: var(--text-light); line-height: 1.6; }
+
+    @media (max-width: 1024px) {
+      .calc-layout { grid-template-columns: 1fr; }
+      .result-card { position: static; }
+      .info-boxes { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .field-grid { grid-template-columns: 1fr; }
+      .field-grid--3 { grid-template-columns: 1fr 1fr; }
+      .extras-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container navbar__inner">
+      <a href="index.html" class="navbar__logo">
+        <div class="logo-icon">XYZ</div>
+        <span class="logo-name">XYZ <span>Property</span></span>
+      </a>
+      <div class="navbar__links">
+        <a href="index.html">Home</a>
+        <a href="properties.html">Properties</a>
+        <a href="catalog.html">Catalog</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="navbar__actions">
+        <a href="properties.html" class="btn btn--outline">Browse Listings</a>
+        <a href="calculator.html" class="btn btn--primary active">Property Calculator</a>
+      </div>
+      <button class="hamburger"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu">
+    <button class="mobile-menu__close">&times;</button>
+    <a href="index.html">Home</a>
+    <a href="properties.html">Properties</a>
+    <a href="catalog.html">Catalog</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="calculator.html" class="btn btn--primary">Property Calculator</a>
+  </div>
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Property Calculator</div>
+      <h1>Moving Cost Calculator</h1>
+      <p>Get an instant estimate for your property move — quick, easy, and free</p>
+    </div>
+  </div>
+
+  <!-- CALCULATOR -->
+  <section class="calc-page">
+    <div class="container">
+      <div class="calc-layout">
+
+        <!-- FORM -->
+        <div class="calc-form-card">
+          <div class="calc-form-card__header">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/>
+              <line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/>
+            </svg>
+            <div>
+              <h2>Calculate Your Moving Cost</h2>
+              <p>Fill in the details below for an instant estimate</p>
+            </div>
+          </div>
+
+          <div class="calc-form-card__body">
+
+            <!-- Step indicator -->
+            <div class="steps">
+              <div class="step step--active" id="step-ind-1">
+                <div class="step__num">1</div>
+                <div class="step__label">Property</div>
+              </div>
+              <div class="step-line" id="line-1"></div>
+              <div class="step" id="step-ind-2">
+                <div class="step__num">2</div>
+                <div class="step__label">Move Details</div>
+              </div>
+              <div class="step-line" id="line-2"></div>
+              <div class="step" id="step-ind-3">
+                <div class="step__num">3</div>
+                <div class="step__label">Extras</div>
+              </div>
+            </div>
+
+            <!-- STEP 1: Property Info -->
+            <div class="form-section active" id="section-1">
+              <div class="form-section__title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                Property Details
+              </div>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label>Property Type</label>
+                  <select id="propType">
+                    <option value="apartment">Apartment</option>
+                    <option value="house">House</option>
+                    <option value="condo">Condo</option>
+                    <option value="office">Office</option>
+                    <option value="studio">Studio</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Number of Rooms</label>
+                  <select id="rooms">
+                    <option value="1">Studio / 1 Room</option>
+                    <option value="2">2 Rooms</option>
+                    <option value="3" selected>3 Rooms</option>
+                    <option value="4">4 Rooms</option>
+                    <option value="5">5+ Rooms</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-full field">
+                <label>Apartment Size (sqm) — <span id="sizeVal">80</span> sqm</label>
+                <input type="range" id="aptSize" min="20" max="300" value="80" step="5" />
+                <div class="range-labels"><span>20 sqm</span><span>300 sqm</span></div>
+              </div>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label>Current Floor</label>
+                  <select id="fromFloor">
+                    <option value="0">Ground Floor</option>
+                    <option value="1">1st Floor</option>
+                    <option value="2">2nd Floor</option>
+                    <option value="3">3rd Floor</option>
+                    <option value="4">4th Floor</option>
+                    <option value="5">5th Floor +</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Elevator Available?</label>
+                  <select id="elevator">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="step-nav">
+                <span></span>
+                <button class="btn btn--primary" onclick="goStep(2)">Next: Move Details →</button>
+              </div>
+            </div>
+
+            <!-- STEP 2: Move Details -->
+            <div class="form-section" id="section-2">
+              <div class="form-section__title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                Move Details
+              </div>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label>From (City / Area)</label>
+                  <input type="text" id="fromCity" placeholder="e.g. Tel Aviv" />
+                </div>
+                <div class="field">
+                  <label>To (City / Area)</label>
+                  <input type="text" id="toCity" placeholder="e.g. Jerusalem" />
+                </div>
+              </div>
+
+              <div class="field-full field">
+                <label>Estimated Distance (km) — <span id="distVal">50</span> km</label>
+                <input type="range" id="distance" min="1" max="500" value="50" step="1" />
+                <div class="range-labels"><span>1 km</span><span>500 km</span></div>
+              </div>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label>Move Date</label>
+                  <input type="date" id="moveDate" />
+                </div>
+                <div class="field">
+                  <label>Move Time Preference</label>
+                  <select id="moveTime">
+                    <option value="weekday">Weekday (cheaper)</option>
+                    <option value="weekend">Weekend</option>
+                    <option value="holiday">Public Holiday</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="field-grid">
+                <div class="field">
+                  <label>Destination Floor</label>
+                  <select id="toFloor">
+                    <option value="0">Ground Floor</option>
+                    <option value="1">1st Floor</option>
+                    <option value="2">2nd Floor</option>
+                    <option value="3">3rd Floor</option>
+                    <option value="4">4th Floor</option>
+                    <option value="5">5th Floor +</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Destination Elevator?</label>
+                  <select id="toElevator">
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="step-nav">
+                <button class="btn btn--outline" onclick="goStep(1)">← Back</button>
+                <button class="btn btn--primary" onclick="goStep(3)">Next: Extras →</button>
+              </div>
+            </div>
+
+            <!-- STEP 3: Extras -->
+            <div class="form-section" id="section-3">
+              <div class="form-section__title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                Additional Services
+              </div>
+
+              <div class="extras-grid" id="extrasGrid">
+                <label class="extra-item" onclick="toggleExtra(this)">
+                  <input type="checkbox" value="packing" data-cost="150" />
+                  <div>
+                    <div class="extra-item__label">📦 Packing Service</div>
+                  </div>
+                  <span class="extra-item__price">+$150</span>
+                </label>
+                <label class="extra-item" onclick="toggleExtra(this)">
+                  <input type="checkbox" value="unpacking" data-cost="120" />
+                  <div>
+                    <div class="extra-item__label">🗃 Unpacking Service</div>
+                  </div>
+                  <span class="extra-item__price">+$120</span>
+                </label>
+                <label class="extra-item" onclick="toggleExtra(this)">
+                  <input type="checkbox" value="storage" data-cost="200" />
+                  <div>
+                    <div class="extra-item__label">🏪 Storage (1 month)</div>
+                  </div>
+                  <span class="extra-item__price">+$200</span>
+                </label>
+                <label class="extra-item" onclick="toggleExtra(this)">
+                  <input type="checkbox" value="cleaning" data-cost="180" />
+                  <div>
+                    <div class="extra-item__label">🧹 Cleaning Service</div>
+                  </div>
+                  <span class="extra-item__price">+$180</span>
+                </label>
+                <label class="extra-item" onclick="toggleExtra(this)">
+                  <input type="checkbox" value="insurance" data-cost="90" />
+                  <div>
+                    <div class="extra-item__label">🛡 Moving Insurance</div>
+                  </div>
+                  <span class="extra-item__price">+$90</span>
+                </label>
+                <label class="extra-item" onclick="toggleExtra(this)">
+                  <input type="checkbox" value="assembly" data-cost="130" />
+                  <div>
+                    <div class="extra-item__label">🔧 Furniture Assembly</div>
+                  </div>
+                  <span class="extra-item__price">+$130</span>
+                </label>
+                <label class="extra-item" onclick="toggleExtra(this)">
+                  <input type="checkbox" value="piano" data-cost="250" />
+                  <div>
+                    <div class="extra-item__label">🎹 Piano / Heavy Items</div>
+                  </div>
+                  <span class="extra-item__price">+$250</span>
+                </label>
+                <label class="extra-item" onclick="toggleExtra(this)">
+                  <input type="checkbox" value="express" data-cost="200" />
+                  <div>
+                    <div class="extra-item__label">⚡ Express Move</div>
+                  </div>
+                  <span class="extra-item__price">+$200</span>
+                </label>
+              </div>
+
+              <div class="step-nav">
+                <button class="btn btn--outline" onclick="goStep(2)">← Back</button>
+                <button class="btn btn--primary" onclick="calculate()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                  Calculate Now
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RESULT -->
+        <div class="result-card" id="resultCard">
+          <div class="result-card__header">
+            <h3>Estimated Moving Cost</h3>
+            <p>Updates as you fill in details</p>
+          </div>
+          <div class="result-card__body">
+
+            <div class="result-total">
+              <div class="result-total__label">Total Estimate</div>
+              <div class="result-total__amount" id="totalAmount">$—</div>
+              <div class="result-total__range" id="totalRange">Fill in details to get estimate</div>
+            </div>
+
+            <div class="result-breakdown">
+              <h4>Cost Breakdown</h4>
+              <div class="breakdown-item">
+                <span class="breakdown-item__label">Base moving fee</span>
+                <span class="breakdown-item__value" id="brkBase">—</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="breakdown-item__label">Distance charge</span>
+                <span class="breakdown-item__value" id="brkDistance">—</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="breakdown-item__label">Floor / stairs surcharge</span>
+                <span class="breakdown-item__value" id="brkFloor">—</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="breakdown-item__label">Time surcharge</span>
+                <span class="breakdown-item__value" id="brkTime">—</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="breakdown-item__label">Additional services</span>
+                <span class="breakdown-item__value" id="brkExtras">—</span>
+              </div>
+              <div class="breakdown-item breakdown-item--total">
+                <span class="breakdown-item__label">Total</span>
+                <span class="breakdown-item__value" id="brkTotal">—</span>
+              </div>
+            </div>
+
+            <div class="result-note">
+              ⚠️ This is an estimated cost only. Final pricing depends on actual inventory, access conditions, and availability. Contact us for a confirmed quote.
+            </div>
+
+            <div class="result-actions">
+              <a href="contact.html" class="btn btn--primary" style="justify-content:center">
+                Get Official Quote
+              </a>
+              <button class="btn btn--outline" style="justify-content:center" onclick="resetCalc()">
+                Start Over
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Info boxes -->
+      <div class="info-boxes">
+        <div class="info-box">
+          <div class="info-box__icon">🚛</div>
+          <h4>Professional Movers</h4>
+          <p>Trained and insured moving teams available 7 days a week for all property types.</p>
+        </div>
+        <div class="info-box">
+          <div class="info-box__icon">📋</div>
+          <h4>Transparent Pricing</h4>
+          <p>No hidden fees. What you see in your estimate is what you get — guaranteed.</p>
+        </div>
+        <div class="info-box">
+          <div class="info-box__icon">🛡</div>
+          <h4>Fully Insured</h4>
+          <p>All moves include basic insurance. Optional full-coverage available on request.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__bottom" style="border-top:none;padding:24px 0">
+        <span>&copy; 2025 XYZ Property Management. All rights reserved.</span>
+        <span>Privacy Policy &nbsp;|&nbsp; Terms of Service</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="toast"></div>
+  <script src="assets/js/main.js"></script>
+  <script>
+    // ── Step navigation ───────────────────────────────────────────────────────
+    function goStep(n) {
+      [1,2,3].forEach(i => {
+        document.getElementById('section-' + i).classList.toggle('active', i === n);
+        const ind = document.getElementById('step-ind-' + i);
+        ind.classList.toggle('step--active', i === n);
+        ind.classList.toggle('step--done', i < n);
+      });
+      [1,2].forEach(i => {
+        const line = document.getElementById('line-' + i);
+        if (line) line.classList.toggle('step-line--done', i < n);
+      });
+      if (n === 3) calculate();
+    }
+
+    // ── Range display ─────────────────────────────────────────────────────────
+    document.getElementById('aptSize').addEventListener('input', function() {
+      document.getElementById('sizeVal').textContent = this.value;
+      calculate();
+    });
+    document.getElementById('distance').addEventListener('input', function() {
+      document.getElementById('distVal').textContent = this.value;
+      calculate();
+    });
+
+    // ── Extras toggle ─────────────────────────────────────────────────────────
+    function toggleExtra(el) {
+      el.classList.toggle('checked');
+      calculate();
+    }
+
+    // ── Core calculation ──────────────────────────────────────────────────────
+    function calculate() {
+      const size     = parseInt(document.getElementById('aptSize').value) || 80;
+      const rooms    = parseInt(document.getElementById('rooms').value) || 3;
+      const distance = parseInt(document.getElementById('distance').value) || 50;
+      const fromFloor= parseInt(document.getElementById('fromFloor').value) || 0;
+      const toFloor  = parseInt(document.getElementById('toFloor').value) || 0;
+      const elevator = document.getElementById('elevator').value;
+      const toElev   = document.getElementById('toElevator').value;
+      const moveTime = document.getElementById('moveTime').value;
+
+      // Base fee by size + rooms
+      let base = 200 + (size * 2.5) + (rooms * 80);
+
+      // Distance charge
+      let distCharge = distance <= 10 ? 50 : distance <= 50 ? 100 : distance <= 150 ? 200 : distance * 1.2;
+
+      // Floor surcharge
+      let floorCharge = 0;
+      if (fromFloor > 0 && elevator === 'no') floorCharge += fromFloor * 40;
+      if (toFloor > 0 && toElev === 'no') floorCharge += toFloor * 40;
+      if (fromFloor > 3 || toFloor > 3) floorCharge += 60;
+
+      // Time surcharge
+      let timeCharge = 0;
+      if (moveTime === 'weekend') timeCharge = base * 0.15;
+      if (moveTime === 'holiday') timeCharge = base * 0.30;
+
+      // Extras
+      let extrasTotal = 0;
+      document.querySelectorAll('#extrasGrid input[type="checkbox"]').forEach(cb => {
+        if (cb.closest('.extra-item').classList.contains('checked')) {
+          extrasTotal += parseInt(cb.dataset.cost) || 0;
+        }
+      });
+
+      const total = Math.round(base + distCharge + floorCharge + timeCharge + extrasTotal);
+      const low   = Math.round(total * 0.9);
+      const high  = Math.round(total * 1.15);
+
+      // Update UI
+      document.getElementById('totalAmount').textContent = '$' + total.toLocaleString();
+      document.getElementById('totalRange').textContent  = 'Range: $' + low.toLocaleString() + ' – $' + high.toLocaleString();
+      document.getElementById('brkBase').textContent     = '$' + Math.round(base).toLocaleString();
+      document.getElementById('brkDistance').textContent = '$' + Math.round(distCharge).toLocaleString();
+      document.getElementById('brkFloor').textContent    = floorCharge > 0 ? '$' + floorCharge.toLocaleString() : 'None';
+      document.getElementById('brkTime').textContent     = timeCharge > 0 ? '$' + Math.round(timeCharge).toLocaleString() : 'None';
+      document.getElementById('brkExtras').textContent   = extrasTotal > 0 ? '$' + extrasTotal.toLocaleString() : 'None';
+      document.getElementById('brkTotal').textContent    = '$' + total.toLocaleString();
+    }
+
+    function resetCalc() {
+      goStep(1);
+      document.querySelectorAll('.extra-item').forEach(el => el.classList.remove('checked'));
+      document.querySelectorAll('.extra-item input').forEach(cb => cb.checked = false);
+      document.getElementById('aptSize').value = 80;
+      document.getElementById('sizeVal').textContent = '80';
+      document.getElementById('distance').value = 50;
+      document.getElementById('distVal').textContent = '50';
+      document.getElementById('totalAmount').textContent = '$—';
+      document.getElementById('totalRange').textContent = 'Fill in details to get estimate';
+      ['brkBase','brkDistance','brkFloor','brkTime','brkExtras','brkTotal'].forEach(id => {
+        document.getElementById(id).textContent = '—';
+      });
+    }
+
+    // Run on load
+    calculate();
+  </script>
+</body>
+</html>
