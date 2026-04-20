@@ -386,6 +386,53 @@
                 <div class="range-labels"><span>0 sqm</span><span>300 sqm</span></div>
               </div>
 
+              <!-- Furnished / Move Size -->
+              <div class="field-grid">
+                <div class="field">
+                  <label>Furnishing Status</label>
+                  <select id="furnished">
+                    <option value="" disabled selected>Select Status</option>
+                    <option value="fully">Fully Furnished</option>
+                    <option value="partial">Partially Furnished</option>
+                    <option value="unfurnished">Unfurnished</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Move Size</label>
+                  <select id="moveSize">
+                    <option value="" disabled selected>Select Size</option>
+                    <option value="studio">Studio / Small</option>
+                    <option value="small">1–2 Bedroom</option>
+                    <option value="medium">3–4 Bedroom</option>
+                    <option value="large">5+ Bedroom / Full House</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Large Items -->
+              <div class="field-full field">
+                <label>Number of Large Items (sofas, beds, wardrobes)</label>
+                <select id="largeItems">
+                  <option value="" disabled selected>Select Range</option>
+                  <option value="0">None</option>
+                  <option value="3">1–3 items</option>
+                  <option value="6">4–6 items</option>
+                  <option value="10">7–10 items</option>
+                  <option value="15">10+ items</option>
+                </select>
+              </div>
+
+              <!-- Special Items -->
+              <div class="field-full field">
+                <label>Special / Fragile Items</label>
+                <select id="specialItems">
+                  <option value="none">None</option>
+                  <option value="some">Some (artwork, antiques)</option>
+                  <option value="appliances">Large Appliances</option>
+                  <option value="both">Both</option>
+                </select>
+              </div>
+
               <!-- Floor & Elevator — shown conditionally based on property type -->
               <div id="floorElevatorRow" class="field-grid" style="display:none">
                 <div class="field">
@@ -406,6 +453,37 @@
                     <option value="no">No</option>
                   </select>
                 </div>
+              </div>
+
+              <!-- Parking Access -->
+              <div class="field-grid">
+                <div class="field">
+                  <label>Parking at Origin</label>
+                  <select id="parkingFrom">
+                    <option value="easy">Easy Access / Driveway</option>
+                    <option value="street">Street Parking</option>
+                    <option value="difficult">No Access / Difficult</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Parking at Destination</label>
+                  <select id="parkingTo">
+                    <option value="easy">Easy Access / Driveway</option>
+                    <option value="street">Street Parking</option>
+                    <option value="difficult">No Access / Difficult</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Pet Transport -->
+              <div class="field-full field">
+                <label>Pet Transport</label>
+                <select id="petTransport">
+                  <option value="none">No Pets</option>
+                  <option value="small">Small Pet (cat, small dog)</option>
+                  <option value="large">Large Pet (large dog)</option>
+                  <option value="multiple">Multiple Pets</option>
+                </select>
               </div>
 
               <div class="step-nav">
@@ -595,6 +673,22 @@
                   <span class="breakdown-item__value" id="brkFloor"></span>
                 </div>
                 <div class="breakdown-item">
+                  <span class="breakdown-item__label">Large items</span>
+                  <span class="breakdown-item__value" id="brkLarge"></span>
+                </div>
+                <div class="breakdown-item">
+                  <span class="breakdown-item__label">Special / fragile items</span>
+                  <span class="breakdown-item__value" id="brkSpecial"></span>
+                </div>
+                <div class="breakdown-item">
+                  <span class="breakdown-item__label">Parking surcharge</span>
+                  <span class="breakdown-item__value" id="brkParking"></span>
+                </div>
+                <div class="breakdown-item">
+                  <span class="breakdown-item__label">Pet transport</span>
+                  <span class="breakdown-item__value" id="brkPet"></span>
+                </div>
+                <div class="breakdown-item">
                   <span class="breakdown-item__label">Time surcharge</span>
                   <span class="breakdown-item__value" id="brkTime"></span>
                 </div>
@@ -710,17 +804,38 @@
 
     // ── Core calculation ──────────────────────────────────────────────────────
     function calculate() {
-      const size     = parseInt(document.getElementById('aptSize').value) || 80;
-      const rooms    = parseInt(document.getElementById('rooms').value) || 3;
-      const distance = parseInt(document.getElementById('distance').value) || 50;
-      const fromFloor= parseInt(document.getElementById('fromFloor').value) || 0;
-      const toFloor  = parseInt(document.getElementById('toFloor').value) || 0;
-      const elevator = document.getElementById('elevator').value;
-      const toElev   = document.getElementById('toElevator').value;
-      const moveTime = document.getElementById('moveTime').value;
+      const size        = parseInt(document.getElementById('aptSize').value)    || 0;
+      const rooms       = parseInt(document.getElementById('rooms').value)      || 1;
+      const distance    = parseInt(document.getElementById('distance').value)   || 1;
+      const fromFloor   = parseInt(document.getElementById('fromFloor').value)  || 0;
+      const toFloor     = parseInt(document.getElementById('toFloor').value)    || 0;
+      const elevator    = document.getElementById('elevator').value;
+      const toElev      = document.getElementById('toElevator').value;
+      const moveTime    = document.getElementById('moveTime').value;
+      const furnished   = document.getElementById('furnished').value   || 'unfurnished';
+      const moveSize    = document.getElementById('moveSize').value    || 'small';
+      const largeItems  = parseInt(document.getElementById('largeItems').value) || 0;
+      const specialItems= document.getElementById('specialItems').value || 'none';
+      const parkingFrom = document.getElementById('parkingFrom').value || 'easy';
+      const parkingTo   = document.getElementById('parkingTo').value   || 'easy';
+      const petTransport= document.getElementById('petTransport').value|| 'none';
 
       // Base fee by size + rooms
       let base = 200 + (size * 2.5) + (rooms * 80);
+
+      // Move size multiplier
+      const moveSizeMultiplier = { studio: 0.7, small: 1.0, medium: 1.4, large: 1.9 };
+      base *= (moveSizeMultiplier[moveSize] || 1.0);
+
+      // Furnishing surcharge
+      if (furnished === 'fully')   base *= 1.30;
+      if (furnished === 'partial') base *= 1.15;
+
+      // Large items charge
+      const largeItemsCharge = largeItems * 25;
+
+      // Special items charge
+      const specialCharge = specialItems === 'some' ? 150 : specialItems === 'appliances' ? 200 : specialItems === 'both' ? 320 : 0;
 
       // Distance charge
       let distCharge = distance <= 10 ? 50 : distance <= 50 ? 100 : distance <= 150 ? 200 : distance * 1.2;
@@ -728,15 +843,25 @@
       // Floor surcharge
       let floorCharge = 0;
       if (fromFloor > 0 && elevator === 'no') floorCharge += fromFloor * 40;
-      if (toFloor > 0 && toElev === 'no') floorCharge += toFloor * 40;
-      if (fromFloor > 3 || toFloor > 3) floorCharge += 60;
+      if (toFloor > 0 && toElev === 'no')     floorCharge += toFloor * 40;
+      if (fromFloor > 3 || toFloor > 3)       floorCharge += 60;
+
+      // Parking surcharge
+      let parkingCharge = 0;
+      if (parkingFrom === 'street')    parkingCharge += 40;
+      if (parkingFrom === 'difficult') parkingCharge += 100;
+      if (parkingTo === 'street')      parkingCharge += 40;
+      if (parkingTo === 'difficult')   parkingCharge += 100;
+
+      // Pet transport charge
+      const petCharge = petTransport === 'small' ? 80 : petTransport === 'large' ? 150 : petTransport === 'multiple' ? 220 : 0;
 
       // Time surcharge
       let timeCharge = 0;
       if (moveTime === 'weekend') timeCharge = base * 0.15;
       if (moveTime === 'holiday') timeCharge = base * 0.30;
 
-      // Extras
+      // Extras (step 3 checkboxes)
       let extrasTotal = 0;
       document.querySelectorAll('#extrasGrid input[type="checkbox"]').forEach(cb => {
         if (cb.closest('.extra-item').classList.contains('checked')) {
@@ -744,7 +869,7 @@
         }
       });
 
-      const total = Math.round(base + distCharge + floorCharge + timeCharge + extrasTotal);
+      const total = Math.round(base + distCharge + floorCharge + parkingCharge + petCharge + largeItemsCharge + specialCharge + timeCharge + extrasTotal);
       const low   = Math.round(total * 0.9);
       const high  = Math.round(total * 1.15);
 
@@ -757,9 +882,13 @@
       document.getElementById('totalRange').textContent  = 'Range: $' + low.toLocaleString() + ' – $' + high.toLocaleString();
       document.getElementById('brkBase').textContent     = '$' + Math.round(base).toLocaleString();
       document.getElementById('brkDistance').textContent = '$' + Math.round(distCharge).toLocaleString();
-      document.getElementById('brkFloor').textContent    = floorCharge > 0 ? '$' + floorCharge.toLocaleString() : 'None';
-      document.getElementById('brkTime').textContent     = timeCharge > 0 ? '$' + Math.round(timeCharge).toLocaleString() : 'None';
-      document.getElementById('brkExtras').textContent   = extrasTotal > 0 ? '$' + extrasTotal.toLocaleString() : 'None';
+      document.getElementById('brkFloor').textContent    = floorCharge > 0    ? '$' + floorCharge.toLocaleString()                  : 'None';
+      document.getElementById('brkLarge').textContent    = largeItemsCharge > 0 ? '$' + largeItemsCharge.toLocaleString()           : 'None';
+      document.getElementById('brkSpecial').textContent  = specialCharge > 0  ? '$' + specialCharge.toLocaleString()                : 'None';
+      document.getElementById('brkParking').textContent  = parkingCharge > 0  ? '$' + parkingCharge.toLocaleString()                : 'None';
+      document.getElementById('brkPet').textContent      = petCharge > 0      ? '$' + petCharge.toLocaleString()                    : 'None';
+      document.getElementById('brkTime').textContent     = timeCharge > 0     ? '$' + Math.round(timeCharge).toLocaleString()       : 'None';
+      document.getElementById('brkExtras').textContent   = extrasTotal > 0    ? '$' + extrasTotal.toLocaleString()                  : 'None';
       document.getElementById('brkTotal').textContent    = '$' + total.toLocaleString();
     }
 
